@@ -5,7 +5,7 @@ export function HeaderLink({ name, link }: { name: string; link: string }) {
     return (
       <Link
         href="/contact"
-        className="px-6 py-4 border text-[1rem] font-medium"
+        className="px-6 py-4 border text-[1rem] font-medium text-white border-white"
       >
         {name} &rarr;
       </Link>
@@ -13,7 +13,7 @@ export function HeaderLink({ name, link }: { name: string; link: string }) {
   return (
     <Link
       href={`/${link}`}
-      className="text-[1rem] text-white font-light hover:font-medium"
+      className="text-[1rem] text-white font-light hover:font-bold "
     >
       {name}
     </Link>

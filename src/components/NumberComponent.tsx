@@ -9,7 +9,7 @@ export function NumberComponent({
   isSmall,
 }: {
   number: number;
-  icon: string;
+  icon?: string;
   title?: string;
   isSmall?: false;
 }) {
@@ -27,10 +27,12 @@ export function NumberComponent({
     return () => clearInterval(numberInterval);
   }, [number]);
   return (
-    <div className={`relative  `}>
-      <p className="absolute top-0 right-0 text-[2.5rem] font-bold text-[#277FCD]">
-        {icon}
-      </p>
+    <div className={`relative  flex flex-col items-center justify-center`}>
+      {icon && (
+        <p className="absolute top-0 -right-4 text-[2.5rem] font-bold text-[#277FCD]">
+          {icon}
+        </p>
+      )}
       <p
         className={`${
           isSmall ? " text-[4rem] font-[350] " : " text-[7.5rem] font-black"

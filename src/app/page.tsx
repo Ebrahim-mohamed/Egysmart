@@ -1,8 +1,10 @@
+import { WhoSection } from "@/components/homePage/WhoSection";
 import { Hero } from "../components/Hero";
+import { NumbersSection } from "@/components/homePage/NumbersSection";
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-[#0A0A0A]">
       <Hero
         page="home"
         title={
@@ -17,6 +19,8 @@ export default function Home() {
           </span>
         }
       />
+      <WhoSection />
+      <NumbersSection />
     </div>
   );
 }

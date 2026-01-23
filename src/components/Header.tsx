@@ -11,7 +11,7 @@ const links = [
 ];
 export function Header() {
   return (
-    <div className="py-6 px-14 flex items-center justify-between">
+    <div className="py-6 px-14 flex items-center justify-between absolute top-0 left-0 w-full">
       <Image
         className="w-[12.9rem] aspect-69/16"
         src="/logo.png"

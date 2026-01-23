@@ -12,12 +12,17 @@ export function Hero({
 }) {
   return (
     <div
-      className=" p-[var(--section-padding)] w-dvw h-dvh flex items-center justify-center gap-4 text-white text-center flex-col bg-cover bg-center"
+      className=" p-[var(--section-padding)] w-dvw h-dvh flex items-center justify-center gap-4 text-white text-center flex-col bg-cover bg-no-repeat"
       style={{ backgroundImage: `url(/${page}/hero.webp)` }}
     >
+      {page === "home" && (
+        <p className="text-[1rem] font-[1000] text-[#BBC4D1]">
+          Est 2024 - CAIRO, EGYPT
+        </p>
+      )}
       <div className="font-black text-[7.5rem] leading-[100%]">{title}</div>
       <div className="text-[1.25rem] font-normal">{pra}</div>
-      <Link href={`#first`} className="text-[1.5rem] text-white">
+      <Link href={`/${page}/#first`} className="text-[1.5rem] text-white">
         &darr;
       </Link>
     </div>

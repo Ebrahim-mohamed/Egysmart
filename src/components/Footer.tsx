@@ -1,9 +1,26 @@
 import Image from "next/image";
-import Link from "next/link";
+import { FooterLink } from "./FooterLink";
 
+const firstLinks = [
+  { link: "Company", to: "community" },
+  { link: "About Us", to: "about" },
+  { link: "News", to: "home/#news" },
+];
+const secondLinks = [
+  { link: "Services", to: "services" },
+  { link: "Turnkey Projects", to: "projects/#turnkeyProjects" },
+  { link: "Flooring Projects", to: "projects/#flooringProjects" },
+  { link: "Flooring Projects", to: "projects/#flooringProjects" },
+];
+const thirdLinks = [{ link: "Connect", to: "contact" }];
+const social = [
+  { link: "facebook", to: "#" },
+  { link: "instagram", to: "#" },
+  { link: "linkedin", to: "#" },
+];
 export function Footer() {
   return (
-    <div className="p-20 flex flex-col gap-12 ">
+    <div className="p-20 flex flex-col gap-12 bg-[#0A0A0A]">
       <Image
         className="w-[12.9rem] aspect-69/16"
         src="/logo.png"
@@ -18,9 +35,26 @@ export function Footer() {
               Engineering excellence built on a foundation of trust, integrity
               and modern innovation.
             </p>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div className="flex flex-col items-start justify-center gap-6">
+              {firstLinks.map((link) => (
+                <FooterLink name={link.link} to={link.to} key={link.to} />
+              ))}
+            </div>
+            <div className="flex flex-col items-start justify-center gap-6">
+              {secondLinks.map((link) => (
+                <FooterLink name={link.link} to={link.to} key={link.to} />
+              ))}
+            </div>
+            <div className="flex flex-col items-start justify-center gap-6">
+              {thirdLinks.map((link) => (
+                <FooterLink name={link.link} to={link.to} key={link.to} />
+              ))}
+              <div className="flex items-center justify-center gap-6">
+                {social.map((link) => (
+                  <FooterLink name={link.link} to={link.to} key={link.link} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         <p className="text-[1rem] font-[325] text-[#BBC4D1]">
