@@ -7,31 +7,41 @@ export function MostTextPattern({
   pra,
   moreWidth,
   horz,
+  isCenter,
 }: {
-  blueText: string;
+  blueText?: string;
   redText: string;
   whiteText: string;
   pra?: string | ReactNode;
   moreWidth?: boolean;
   horz?: boolean;
+  isCenter?: boolean;
 }) {
   return (
     <div className="flex flex-col  gap-4">
-      <p className="text-[1rem] font-medium text-[#CD2735]">
+      <p
+        className={`text-[1rem] font-medium text-[#CD2735] ${isCenter && " text-center "}`}
+      >
         &#x2014; {redText}
       </p>
-      <div className={`${horz ? " flex items-center justify-between " : ""}`}>
+      <div
+        className={`${horz ? " flex items-center justify-between gap-4 " : " flex flex-col gap-4"}`}
+      >
         <div>
-          <p className={`text-[4rem] font-medium text-white leading-[110%]`}>
+          <p
+            className={`text-[4rem] font-medium text-white leading-[110%] ${isCenter && " text-center "} `}
+          >
             {whiteText}
           </p>
-          <p className={`text-[4rem] font-medium  text-[#277FCD]`}>
-            {blueText}
-          </p>
+          {blueText && (
+            <p className={`text-[4rem] font-medium  text-[#277FCD]`}>
+              {blueText}
+            </p>
+          )}
         </div>
         {pra && (
           <p
-            className={`text-[#BBC4D1] font-normal text-[1rem] ${moreWidth ? "" : " max-w-120 "}`}
+            className={`text-[#BBC4D1] font-normal text-[1rem] ${moreWidth ? "" : " max-w-120 "} ${isCenter && " text-center "} `}
           >
             {pra}
           </p>
