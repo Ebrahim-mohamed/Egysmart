@@ -1,6 +1,8 @@
 import { WhoSection } from "@/components/homePage/WhoSection";
 import { Hero } from "../components/Hero";
 import { NumbersSection } from "@/components/homePage/NumbersSection";
+import { ServicesSection } from "@/components/homePage/ServicesSection";
+import { ClientsSection } from "@/components/ClientsSection";
 
 export default function Home() {
   return (
@@ -21,6 +23,8 @@ export default function Home() {
       />
       <WhoSection />
       <NumbersSection />
+      <ServicesSection />
+      <ClientsSection />
     </div>
   );
 }

@@ -8,7 +8,7 @@ const numbers = [
 ];
 export function NumbersSection() {
   return (
-    <div className="p-[var(--sectionPadding)] flex items-center justify-center gap-12 flex-col">
+    <div className="p-[var(--sectionPadding)] flex items-center justify-center gap-12 flex-col bg-[url('/home/numbersBackground.webp')] bg-cover bg-no-repeat ">
       <div className="flex flex-col  gap-4 items-center justify-center">
         <p className="text-[1rem] font-medium text-[#CD2735]">
           OUR PROVED TRACK RECORD
@@ -28,7 +28,7 @@ export function NumbersSection() {
             number={number.number}
             icon={number.icon || undefined}
             title={number.title}
-            key={number.title}
+            key={number.number}
           />
         ))}
       </div>
