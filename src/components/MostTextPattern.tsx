@@ -3,11 +3,13 @@ export function MostTextPattern({
   redText,
   whiteText,
   pra,
+  moreWidth,
 }: {
   blueText: string;
   redText: string;
   whiteText: string;
   pra?: string;
+  moreWidth?: boolean;
 }) {
   return (
     <div className="flex flex-col  gap-4">
@@ -21,7 +23,9 @@ export function MostTextPattern({
         <p className={`text-[4rem] font-medium  text-[#277FCD]`}>{blueText}</p>
       </div>
       {pra && (
-        <p className="text-[#BBC4D1] font-normal text-[1rem] max-w-120">
+        <p
+          className={`text-[#BBC4D1] font-normal text-[1rem] ${moreWidth ? "" : " max-w-120 "}`}
+        >
           {pra}
         </p>
       )}
