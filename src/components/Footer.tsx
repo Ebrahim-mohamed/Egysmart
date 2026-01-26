@@ -25,7 +25,7 @@ const social = [
 export function Footer() {
   return (
     <div className="p-20 flex flex-col gap-12 bg-[#0A0A0A]">
-      <Link href="/">
+      <Link href="/" className="w-fit">
         <Image
           className="w-[12.9rem] aspect-69/16"
           src="/logo.png"

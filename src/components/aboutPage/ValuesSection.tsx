@@ -1,3 +1,4 @@
+import { SecondTextPattern } from "../SecondTextPattern";
 import { ValueBox } from "./ValueBox";
 
 const values = [
@@ -21,14 +22,14 @@ const values = [
 export function ValuesSection() {
   return (
     <div className="p-[var(--sectionPadding)] bg-[url('/about/valuesBg.webp')] bg-cover bg-no-repeat ">
-      <div className="text-center mb-6">
-        <p className="text-[1rem] font-medium text-[#CD2735] mb-4">
-          &#x2014; our values
-        </p>
-        <p className={`text-[4rem] font-[350] text-white `}>
-          What We <span className="text-[#277FCD]">Value</span> <br /> Most
-        </p>
-      </div>
+      <SecondTextPattern
+        redText="&#x2014; our values"
+        title={
+          <p className={`text-[4rem] font-[350] text-white `}>
+            What We <span className="text-[#277FCD]">Value</span> <br /> Most
+          </p>
+        }
+      />
       <div className="flex items-center justify-between gap-4">
         {values.map((value) => (
           <ValueBox pra={value.pra} title={value.title} key={value.title} />

@@ -3,6 +3,8 @@ import { Hero } from "../components/Hero";
 import { NumbersSection } from "@/components/homePage/NumbersSection";
 import { ServicesSection } from "@/components/homePage/ServicesSection";
 import { ClientsSection } from "@/components/ClientsSection";
+import { FeedbacksSection } from "@/components/homePage/FeedbacksSection";
+import { NewsSection } from "@/components/homePage/News";
 
 export default function Home() {
   return (
@@ -25,6 +27,8 @@ export default function Home() {
       <NumbersSection />
       <ServicesSection />
       <ClientsSection />
+      <NewsSection />
+      <FeedbacksSection />
     </div>
   );
 }
