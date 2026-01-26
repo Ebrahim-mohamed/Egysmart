@@ -20,7 +20,10 @@ const jobs = [
 ];
 export function JobsSection() {
   return (
-    <div className="p-[var(--sectionPadding)] bg-cover bg-no-repeat bg-[url('/community/communityBg.webp')] flex flex-col items-center justify-center gap-6">
+    <div
+      className="p-[var(--sectionPadding)] bg-cover bg-no-repeat bg-[url('/community/communityBg.webp')] flex flex-col items-center justify-center gap-6"
+      id="first"
+    >
       <MostTextPattern
         isCenter
         moreWidth

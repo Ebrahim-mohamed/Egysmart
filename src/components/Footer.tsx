@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { FooterLink } from "./FooterLink";
+import Link from "next/link";
 
 const firstLinks = [
   { link: "Company", to: "community" },
@@ -8,26 +9,31 @@ const firstLinks = [
 ];
 const secondLinks = [
   { link: "Services", to: "services" },
-  { link: "Turnkey Projects", to: "projects/#turnkeyProjects" },
-  { link: "Flooring Projects", to: "projects/#flooringProjects" },
-  { link: "Flooring Projects", to: "projects/#flooringProjects" },
+  { link: "Turnkey Projects", to: "services/#turnkeyProjects" },
+  { link: "Flooring Projects", to: "services/#flooringProjects" },
+  { link: "Concrete Flooring", to: "services/#concreteFlooring" },
 ];
 const thirdLinks = [{ link: "Connect", to: "contact" }];
 const social = [
-  { link: "facebook", to: "#" },
+  { link: "facebook", to: "https://www.facebook.com/share/19jqUgPwUL/" },
   { link: "instagram", to: "#" },
-  { link: "linkedin", to: "#" },
+  {
+    link: "linkedin",
+    to: "https://www.linkedin.com/company/egysmart-4-modern-engineering/",
+  },
 ];
 export function Footer() {
   return (
     <div className="p-20 flex flex-col gap-12 bg-[#0A0A0A]">
-      <Image
-        className="w-[12.9rem] aspect-69/16"
-        src="/logo.png"
-        alt="logo"
-        width={300}
-        height={300}
-      />
+      <Link href="/">
+        <Image
+          className="w-[12.9rem] aspect-69/16"
+          src="/logo.png"
+          alt="logo"
+          width={300}
+          height={300}
+        />
+      </Link>
       <div>
         <div className="flex flex-col gap-10">
           <div className="flex items-start justify-between w-full">

@@ -3,16 +3,19 @@ export function ServiceBox({
   title,
   secTitle,
   des,
+  id,
 }: {
   img: string;
   title: string;
   secTitle: string;
   des: string[];
+  id?: string;
 }) {
   return (
     <div
       className="py-50 px-20 bg-cover bg-no-repeat flex items-center justify-center flex-col"
       style={{ backgroundImage: `url(/services/${img}.webp)` }}
+      id={id}
     >
       <div className="p-6 bg-[#FFFFFF14] border-[#FFFFFF0A] border backdrop-blur-[4.5px] min-w-3xl">
         <div className="flex items-center justify-center mb-8 flex-col ">

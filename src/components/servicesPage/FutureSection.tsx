@@ -9,7 +9,10 @@ const numbers = [
 ];
 export function FutureSection() {
   return (
-    <div className=" p-[var(--sectionPadding)] flex gap-14 items-start justify-between bg-[#0A0A0A]">
+    <div
+      className=" p-[var(--sectionPadding)] flex gap-14 items-start justify-between bg-[#0A0A0A]"
+      id="first"
+    >
       <div>
         <MostTextPattern
           moreWidth

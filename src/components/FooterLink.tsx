@@ -5,7 +5,8 @@ export function FooterLink({ name, to }: { name: string; to: string }) {
   if (name === "facebook" || name === "instagram" || name === "linkedin")
     return (
       <Link
-        href={`/${to}`}
+        target="_blank"
+        href={to}
         className="text-[#277FCD] text-[1.25rem] font-bold mb-4"
       >
         <Image

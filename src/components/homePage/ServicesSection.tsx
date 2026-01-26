@@ -10,14 +10,14 @@ const servicesAbove = [
         <br /> with unified responsibility
       </span>
     ),
-    link: "projects/#turnkeyProjects",
+    link: "services/#turnkeyProjects",
     img: "turnkeyProjects",
     class: " min-h-[35rem] w-[65%] ",
   },
   {
     title: "Concrete Flooring",
     pra: "End to end execution from concept to reality, we handle every phase with unified responsibility",
-    link: "projects/#concreteFlooring",
+    link: "services/#concreteFlooring",
     img: "concreteFlooring",
     class: " min-h-[35rem] flex-1 ",
   },
@@ -37,7 +37,7 @@ export function ServicesSection() {
             transforming complex challenges into <br /> enduring structures
           </p>
           <Link
-            href="/projects"
+            href="/services"
             className="text-[1rem] font-medium text-[#277FCD]"
           >
             See All Projects &rarr;
@@ -66,7 +66,7 @@ export function ServicesSection() {
             </span>
           }
           img="protectiveCoating"
-          link="protectiveCoating"
+          link="services/#protectiveCoating"
           classes=" w-full min-h-[25rem] "
         />
       </div>

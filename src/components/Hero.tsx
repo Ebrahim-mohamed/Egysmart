@@ -22,7 +22,7 @@ export function Hero({
       )}
       <div className="font-black text-[7.5rem] leading-[100%]">{title}</div>
       <div className="text-[1.25rem] font-normal">{pra}</div>
-      <Link href={`/${page}/#first`} className="text-[1.5rem] text-white">
+      <Link href={`#first`} className="text-[1.5rem] text-white">
         &darr;
       </Link>
     </div>

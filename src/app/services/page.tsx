@@ -12,6 +12,7 @@ export default function Services() {
       />
       <FutureSection />
       <ServiceBox
+        id="turnkeyProjects"
         title="Turnkey Projects"
         img="turnkeyProjects"
         secTitle="First SERVICE"
@@ -23,6 +24,7 @@ export default function Services() {
         ]}
       />
       <ServiceBox
+        id="protectiveCoating"
         title="Protective Coating"
         img="protectiveCoating"
         secTitle="second SERVICE"
@@ -34,6 +36,7 @@ export default function Services() {
         ]}
       />
       <ServiceBox
+        id="concreteFlooring"
         title="Concrete Flooring"
         img="concreteFlooring"
         secTitle="fourth SERVICE"
