@@ -34,7 +34,9 @@ export function MostTextPattern({
             {whiteText}
           </p>
           {blueText && (
-            <p className={`text-[4rem] font-medium  text-[#277FCD]`}>
+            <p
+              className={`text-[4rem] font-medium  text-[#277FCD] ${isCenter && " text-center "} `}
+            >
               {blueText}
             </p>
           )}

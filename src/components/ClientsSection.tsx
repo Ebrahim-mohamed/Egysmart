@@ -44,7 +44,7 @@ export function ClientsSection() {
         modules={[Autoplay]}
         direction="horizontal" // 🔒 force vertical
         loop
-        slidesPerView={6}
+        slidesPerView={4}
         spaceBetween={1}
         speed={800}
         autoplay={{
@@ -61,7 +61,7 @@ export function ClientsSection() {
             <img
               src={logo}
               alt={`client-${index}`}
-              className="h-12 object-contain pointer-events-none"
+              className="h-18 object-contain pointer-events-none"
               draggable={false}
             />
           </SwiperSlide>

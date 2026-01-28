@@ -1,0 +1,36 @@
+import Image from "next/image";
+
+export function ProjectBox({
+  img,
+  title,
+  bue,
+  location,
+}: {
+  img: string;
+  title: string;
+  bue: string;
+  location: string;
+}) {
+  return (
+    <div className="flex gap-6 flex-col text-white">
+      <Image
+        alt="project image"
+        src={`/home/${img}.png`}
+        width={500}
+        height={500}
+        className="w-full"
+      />
+      <div className="flex justify-between gap-4">
+        <h1 className="text-[3rem] font-[350] ">{title}</h1>
+        <div>
+          <p className="text-[1rem] font-[325] mb-4">Location</p>
+          <p className="text-[1.25rem] font-bold">{location}</p>
+        </div>
+        <div className="min-w-32">
+          <p className="text-[1rem] font-[325] mb-4">BUE</p>
+          <p className="text-[1.25rem] font-bold">{bue}</p>
+        </div>
+      </div>
+    </div>
+  );
+}

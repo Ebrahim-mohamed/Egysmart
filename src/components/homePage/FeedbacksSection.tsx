@@ -34,6 +34,18 @@ const feedbacks = [
     job: "CEO of a company",
     img: "feedbackPlaceholder",
   },
+  {
+    name: "John Doe",
+    pra: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    job: "CEO of a company",
+    img: "feedbackPlaceholder",
+  },
+  {
+    name: "John Doe",
+    pra: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    job: "CEO of a company",
+    img: "feedbackPlaceholder",
+  },
 ];
 
 export function FeedbacksSection() {
@@ -57,9 +69,9 @@ export function FeedbacksSection() {
       <Swiper
         modules={[Autoplay, Navigation]}
         loop
-        // centeredSlides={true}
-        // slidesPerView={1.4}
-        spaceBetween={24}
+        centeredSlides={true}
+        slidesPerView={1.8}
+        // spaceBetween={1}
         speed={700}
         autoplay={{
           delay: 2500,
@@ -74,7 +86,7 @@ export function FeedbacksSection() {
         {feedbacks.map((feedback, index) => (
           <SwiperSlide
             key={index}
-            className="flex! justify-center! items-center!"
+            // className="flex! justify-center! items-center!"
           >
             <FeedbackBox
               feedback={feedback.pra}
