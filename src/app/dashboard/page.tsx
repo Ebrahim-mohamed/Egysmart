@@ -6,6 +6,7 @@ import NewsTab from "./tabs/news";
 import JobsTab from "./tabs/Jobs";
 import TestimonialsTab from "./tabs/testimonials";
 import ProjectsTab from "./tabs/projects";
+import LogosTab from "./tabs/logos";
 
 export default function DashboardPage() {
   return (
@@ -16,6 +17,7 @@ export default function DashboardPage() {
         <TabsTrigger value="jobs">Jobs</TabsTrigger>
         <TabsTrigger value="projects">Projects</TabsTrigger>
         <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
+        <TabsTrigger value="logos">Clients logo</TabsTrigger>
       </TabsList>
 
       <TabsContent value="contacts">
@@ -32,6 +34,9 @@ export default function DashboardPage() {
       </TabsContent>
       <TabsContent value="projects">
         <ProjectsTab />
+      </TabsContent>
+      <TabsContent value="logos">
+        <LogosTab />
       </TabsContent>
 
       {/* We will add the rest next */}

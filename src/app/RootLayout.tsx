@@ -13,12 +13,13 @@ export default function RootLayoutClient({
 }) {
   const pathname = usePathname();
   const isDashboard = pathname.startsWith("/dashboard");
+  const isLogin = pathname.startsWith("/login");
 
   return (
     <>
-      {!isDashboard && <Header />}
+      {!isDashboard && !isLogin && <Header />}
       <div className="overflow-hidden">{children}</div>
-      {!isDashboard && <Footer />}
+      {!isDashboard && !isLogin && <Footer />}
     </>
   );
 }

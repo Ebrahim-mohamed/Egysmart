@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function JobBox({ title, des }: { title: string; des: string }) {
   return (
@@ -12,7 +13,7 @@ export function JobBox({ title, des }: { title: string; des: string }) {
       />
       <div className="text-[2rem] font-[350] flex items-center justify-between gap-4">
         <p>{title}</p>
-        <p>&rarr;</p>
+        <Link href="join-form">&rarr;</Link>
       </div>
       <p className="text-[1rem] font-[325]">{des}</p>
     </div>

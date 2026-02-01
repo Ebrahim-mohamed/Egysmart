@@ -6,7 +6,7 @@ export function InternshipBox({ title, des }: { title: string; des: string }) {
       <h1 className="text-[2rem] font-[350]">{title}</h1>
       <p className="text-[1rem] font-[325]">{des}</p>
       <Link
-        href="#"
+        href="join-form"
         className="text-[1rem] font-[350] border border-white/10 bg-white/12 backdrop-blur-0 px-6 py-4 w-fit"
       >
         Apply for internship &rarr;
