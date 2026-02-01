@@ -6,6 +6,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./Input";
 
+/* ======================
+   ZOD SCHEMA
+====================== */
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Invalid email address"),
@@ -16,29 +19,50 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
+/* ======================
+   FORM COMPONENT
+====================== */
 export function Form() {
   const [userType, setUserType] = useState<"client" | "supplier">("client");
+  const [status, setStatus] = useState<null | "success" | "error">(null);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    reset,
+    formState: { errors },
     setValue,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      userType: "client",
-    },
+    defaultValues: { userType: "client" },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("FORM DATA:", data);
+  const onSubmit = async (data: FormData) => {
+    setLoading(true);
+    try {
+      const res = await fetch("http://localhost:4002/api/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error("Failed to submit form");
+
+      setStatus("success");
+      reset({ ...data, message: "" }); // keep userType selected
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="w-[45%]">
-      {/* USER TYPE */}
-      <div className="flex">
+      {/* User Type Toggle */}
+      <div className="flex mb-4">
         <button
           type="button"
           className={`p-4 font-medium text-[1.25rem] ${
@@ -113,11 +137,21 @@ export function Form() {
         />
 
         <button
-          disabled={isSubmitting}
-          className="bg-white text-black py-3 font-semibold disabled:opacity-50 hover:cursor-pointer"
+          type="submit"
+          disabled={loading}
+          className="bg-white text-black py-3 font-semibold disabled:opacity-50"
         >
-          Send Message
+          {loading ? "Submitting..." : "Send Message"}
         </button>
+
+        {status === "success" && (
+          <p className="text-green-400 mt-2">Message sent successfully!</p>
+        )}
+        {status === "error" && (
+          <p className="text-red-500 mt-2">
+            Something went wrong. Please try again.
+          </p>
+        )}
       </form>
     </div>
   );

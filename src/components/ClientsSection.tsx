@@ -44,6 +44,7 @@ export function ClientsSection() {
         modules={[Autoplay]}
         direction="horizontal" // 🔒 force vertical
         loop
+        centeredSlides={true}
         slidesPerView={4}
         spaceBetween={1}
         speed={800}
