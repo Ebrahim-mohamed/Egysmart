@@ -22,6 +22,7 @@ export default function Services() {
           "Cost, quality, and timeline control under one contract",
           "Seamless collaboration across all disciplines",
         ]}
+        cat="turnkey-projects"
       />
       <ServiceBox
         id="protectiveCoating"
@@ -34,6 +35,7 @@ export default function Services() {
           "Engineered solutions for industrial and commercial facilities",
           "Extended lifespan and enhanced surface performance",
         ]}
+        cat="protective-coating"
       />
       <ServiceBox
         id="concreteFlooring"
@@ -46,6 +48,7 @@ export default function Services() {
           "Precision execution for durability and long service life",
           "Low-maintenance, load-resistant flooring solutions",
         ]}
+        cat="concrete-flooring"
       />
     </div>
   );

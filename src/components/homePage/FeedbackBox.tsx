@@ -12,7 +12,7 @@ export function FeedbackBox({
   img: string;
 }) {
   return (
-    <div className="flex p-8 flex-col gap-6 max-w-164 text-white font-[350] text-[1rem] border border-white/10 bg-white/2 backdrop-blur-[5.7px]">
+    <div className="flex p-8 flex-col gap-6  text-white font-[350] text-[1rem] border border-white/10 bg-white/2 backdrop-blur-[5.7px]">
       <p>{feedback}</p>
       <div className="flex gap-6">
         <Image

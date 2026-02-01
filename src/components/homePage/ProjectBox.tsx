@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export function ProjectBox({
   img,
   title,
@@ -13,13 +11,7 @@ export function ProjectBox({
 }) {
   return (
     <div className="flex gap-6 flex-col text-white">
-      <Image
-        alt="project image"
-        src={`/home/${img}.png`}
-        width={500}
-        height={500}
-        className="w-full"
-      />
+      <img alt="project image" src={img} className="w-full" />
       <div className="flex justify-between gap-4">
         <h1 className="text-[3rem] font-[350] ">{title}</h1>
         <div>

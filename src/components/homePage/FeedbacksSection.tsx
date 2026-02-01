@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { SecondTextPattern } from "../SecondTextPattern";
 import { FeedbackBox } from "./FeedbackBox";
 
@@ -9,46 +11,49 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const feedbacks = [
-  {
-    name: "John Doe",
-    pra: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    job: "CEO of a company",
-    img: "feedbackPlaceholder",
-  },
-  {
-    name: "John Doe",
-    pra: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    job: "CEO of a company",
-    img: "feedbackPlaceholder",
-  },
-  {
-    name: "John Doe",
-    pra: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    job: "CEO of a company",
-    img: "feedbackPlaceholder",
-  },
-  {
-    name: "John Doe",
-    pra: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    job: "CEO of a company",
-    img: "feedbackPlaceholder",
-  },
-  {
-    name: "John Doe",
-    pra: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    job: "CEO of a company",
-    img: "feedbackPlaceholder",
-  },
-  {
-    name: "John Doe",
-    pra: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    job: "CEO of a company",
-    img: "feedbackPlaceholder",
-  },
-];
-
 export function FeedbacksSection() {
+  const [feedbacks, setFeedbacks] = useState<
+    {
+      _id: string;
+      name: string;
+      job: string;
+      feedback: string;
+    }[]
+  >([]);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFeedbacks = async () => {
+      try {
+        const res = await fetch("http://localhost:4002/api/testimonials", {
+          cache: "no-store",
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch testimonials");
+
+        const data = await res.json();
+
+        const mapped = data.map((item: any) => ({
+          _id: item._id,
+          name: item.name,
+          job: item.title || item.company || "",
+          feedback: item.feedback,
+        }));
+
+        setFeedbacks(mapped);
+      } catch (err) {
+        console.error("Error fetching testimonials:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeedbacks();
+  }, []);
+
+  if (loading) return null;
+
   return (
     <div className="p-[var(--sectionPadding)] bg-[#0A0A0A] overflow-hidden">
       {/* Title */}
@@ -69,9 +74,8 @@ export function FeedbacksSection() {
       <Swiper
         modules={[Autoplay, Navigation]}
         loop
-        centeredSlides={true}
+        centeredSlides
         slidesPerView={1.8}
-        // spaceBetween={1}
         speed={700}
         autoplay={{
           delay: 2500,
@@ -83,16 +87,13 @@ export function FeedbacksSection() {
         }}
         className="overflow-visible"
       >
-        {feedbacks.map((feedback, index) => (
-          <SwiperSlide
-            key={index}
-            // className="flex! justify-center! items-center!"
-          >
+        {feedbacks.map((item) => (
+          <SwiperSlide key={item._id}>
             <FeedbackBox
-              feedback={feedback.pra}
-              img={feedback.img}
-              job={feedback.job}
-              person={feedback.name}
+              feedback={item.feedback}
+              img="feedbackPlaceholder"
+              job={item.job}
+              person={item.name}
             />
           </SwiperSlide>
         ))}
@@ -100,10 +101,10 @@ export function FeedbacksSection() {
 
       {/* Arrows */}
       <div className="flex items-center justify-center gap-6 mt-14">
-        <button className="feedback-prev text-[#9EA8B7] text-[1.5rem]  w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center p-4 hover:bg-[#277FCD] hover:font-bold hover:text-white cursor-pointer">
+        <button className="feedback-prev text-[#9EA8B7] text-[1.5rem] w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center p-4 hover:bg-[#277FCD] hover:text-white cursor-pointer">
           &#x21D0;
         </button>
-        <button className="feedback-next text-[#9EA8B7] text-[1.5rem]  w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center p-4 hover:bg-[#277FCD] hover:font-bold hover:text-white cursor-pointer">
+        <button className="feedback-next text-[#9EA8B7] text-[1.5rem] w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center p-4 hover:bg-[#277FCD] hover:text-white cursor-pointer">
           &#x21D2;
         </button>
       </div>

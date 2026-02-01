@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 
@@ -8,44 +9,43 @@ import "swiper/css/navigation";
 
 import { MostTextPattern } from "../MostTextPattern";
 import { ProjectBox } from "./ProjectBox";
-import { useState } from "react";
 
-const projects = [
-  {
-    title: "COMMERCIAL PARK STREET EAST",
-    location: "5th Settlement - New Cairo",
-    bue: "80,000 m²",
-  },
-  {
-    title: "COMMERCIAL PARK STREET EAST",
-    location: "5th Settlement - New Cairo",
-    bue: "80,000 m²",
-  },
-  {
-    title: "COMMERCIAL PARK STREET EAST",
-    location: "5th Settlement - New Cairo",
-    bue: "80,000 m²",
-  },
-  {
-    title: "COMMERCIAL PARK STREET EAST",
-    location: "5th Settlement - New Cairo",
-    bue: "80,000 m²",
-  },
-  {
-    title: "COMMERCIAL PARK STREET EAST",
-    location: "5th Settlement - New Cairo",
-    bue: "80,000 m²",
-  },
-];
+/* ================= TYPES ================= */
+type Project = {
+  _id: string;
+  title: string;
+  image: string;
+  bua: number;
+  createdAt: string;
+};
 
 export function ProjectsSection() {
-  const [currentSlide, setCurrentSlide] = useState<number>();
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [currentSlide, setCurrentSlide] = useState(1);
+
+  /* ================= FETCH PROJECTS ================= */
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch("http://localhost:4002/api/projects");
+        const data = await res.json();
+        setProjects(data);
+      } catch (err) {
+        console.error("Failed to fetch projects", err);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  if (projects.length === 0) return null;
+
   return (
     <div
       className="p-[var(--sectionPadding)] bg-[#0A0A0A] overflow-hidden"
-      id="news"
+      id="projects"
     >
-      {/* Title */}
+      {/* ================= TITLE ================= */}
       <div className="mb-14 flex justify-between items-end gap-6">
         <MostTextPattern
           redText="OUR PORTFOLIO"
@@ -53,28 +53,29 @@ export function ProjectsSection() {
           blueText="Developments"
           pra="Explore our landmark engineering feats across the region. We build trust through precision and strength"
         />
+
         <div className="flex items-end justify-center gap-4">
           <div className="text-white text-[1rem] font-medium">
-            <span className="text-[1.5rem] text-white">{currentSlide}</span> /
+            <span className="text-[1.5rem]">{currentSlide}</span> /
             <span>{projects.length}</span>
           </div>
-          <div className="flex items-center justify-center gap-6 mt-14">
-            <button className="feedback-prev text-[#9EA8B7] text-[1.5rem]  w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center p-4 hover:bg-[#277FCD] hover:font-bold hover:text-white cursor-pointer">
+
+          <div className="flex items-center gap-4">
+            <button className="feedback-prev text-[#9EA8B7] w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center hover:bg-[#277FCD] hover:text-white">
               &#x21D0;
             </button>
-            <button className="feedback-next text-[#9EA8B7] text-[1.5rem]  w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center p-4 hover:bg-[#277FCD] hover:font-bold hover:text-white cursor-pointer">
+            <button className="feedback-next text-[#9EA8B7] w-[2rem] h-[2rem] rounded-full border border-[#9EA8B7] flex items-center justify-center hover:bg-[#277FCD] hover:text-white">
               &#x21D2;
             </button>
           </div>
         </div>
       </div>
 
-      {/* Slider */}
+      {/* ================= SLIDER ================= */}
       <Swiper
         modules={[Autoplay, Navigation]}
         loop
-        slidesPerView={1.4} // 👈 show part of next slide
-        // spaceBetween={2}
+        slidesPerView={1.4}
         speed={700}
         autoplay={{
           delay: 2500,
@@ -87,14 +88,17 @@ export function ProjectsSection() {
         onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
         className="overflow-visible projects-swiper"
       >
-        {projects.map((project, index) => (
-          <SwiperSlide key={index} className="transition-all duration-500">
+        {projects.map((project) => (
+          <SwiperSlide
+            key={project._id}
+            className="transition-all duration-500"
+          >
             <div className="project-scale">
               <ProjectBox
                 title={project.title}
-                bue={project.bue}
-                location={project.location}
-                img="projectPlaceholder"
+                location="Egypt"
+                bue={`${project.bua.toLocaleString()} m²`}
+                img={`http://localhost:4002/uploads/${project.image}`}
               />
             </div>
           </SwiperSlide>
