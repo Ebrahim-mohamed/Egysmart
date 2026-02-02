@@ -21,13 +21,13 @@ export function ServiceBox({
       style={{ backgroundImage: `url(/services/${img}.webp)` }}
       id={id}
     >
-      <div className="p-6 bg-[#FFFFFF14] border-[#FFFFFF0A] border backdrop-blur-[4.5px] min-w-3xl relative">
-        <Link
-          href={`/projects/${cat}`}
-          className=" absolute top-2 right-4 text-[1.5rem] text-white"
-        >
+      <Link
+        href={`/projects/${cat}`}
+        className="p-6 bg-[#FFFFFF14] border-[#FFFFFF0A] border backdrop-blur-[4.5px] min-w-3xl relative"
+      >
+        <div className=" absolute top-2 right-4 text-[1.5rem] text-white">
           &#x2197;
-        </Link>
+        </div>
         <div className="flex items-center justify-center mb-8 flex-col ">
           <p className="text-[1.5rem] font-medium text-[#CD2735]">
             &#x2014; {secTitle}
@@ -44,7 +44,7 @@ export function ServiceBox({
             </li>
           ))}
         </ul>
-      </div>
+      </Link>
     </div>
   );
 }
