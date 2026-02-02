@@ -3,7 +3,7 @@ import { MilestoneBox } from "./MilestoneBox";
 
 export function MilestonesSection() {
   return (
-    <div className="p-[var(--sectionPadding)] gap-6 flex items-start justify-between bg-[#050606]">
+    <div className="p-[var(--sectionPadding)] gap-6 flex items-start justify-between bg-[#050606] max-[900px]:flex-col">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col  gap-4">
           <p className="text-[1rem] font-medium text-[#CD2735]">
@@ -42,7 +42,7 @@ export function MilestonesSection() {
         src="/about/milestones.webp"
         width={500}
         height={500}
-        className="w-[40%]"
+        className="w-[40%] max-[900px]:w-full"
       />
     </div>
   );

@@ -96,7 +96,7 @@ export default function ProjectsTab() {
   useEffect(() => {
     const loadProjects = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/projects");
+        const res = await fetch("http://localhost:4002/api/projects");
         if (!res.ok) throw new Error("Failed to fetch projects");
         const data = await res.json();
         setProjects(data);
@@ -126,7 +126,7 @@ export default function ProjectsTab() {
     if (editingProject) {
       // Update
       const res = await fetch(
-        `https://api.egysmart.org/api/projects/${editingProject._id}`,
+        `http://localhost:4002/api/projects/${editingProject._id}`,
         { method: "PUT", body: formData },
       );
       const updated = await res.json();
@@ -135,7 +135,7 @@ export default function ProjectsTab() {
       );
     } else {
       // Create
-      const res = await fetch("https://api.egysmart.org/api/projects", {
+      const res = await fetch("http://localhost:4002/api/projects", {
         method: "POST",
         body: formData,
       });
@@ -151,7 +151,7 @@ export default function ProjectsTab() {
   /* ---------- DELETE ---------- */
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this project?")) return;
-    await fetch(`https://api.egysmart.org/api/projects/${id}`, {
+    await fetch(`http://localhost:4002/api/projects/${id}`, {
       method: "DELETE",
     });
     setProjects((prev) => prev.filter((p) => p._id !== id));
@@ -206,7 +206,7 @@ export default function ProjectsTab() {
           >
             <div className="w-full md:w-48 h-32 md:h-auto overflow-hidden flex-shrink-0">
               <img
-                src={`https://api.egysmart.org/uploads/${project.image}`}
+                src={`http://localhost:4002/uploads/${project.image}`}
                 alt={project.title ?? "Project Image"}
                 className="w-full h-full object-cover"
               />

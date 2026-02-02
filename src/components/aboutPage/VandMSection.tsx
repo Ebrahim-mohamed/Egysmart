@@ -2,7 +2,7 @@ import { VandMBox } from "./VandMBox";
 
 export function VandMSection() {
   return (
-    <div className="flex relative">
+    <div className="flex relative max-[900px]:flex-col">
       <p className=" text-white text-center [text-shadow:0_4px_4px_rgba(255,56,60,0.5)]  text-[12.5rem] font-[350] leading-[160%] absolute top-1/2 left-1/2 -translate-1/2 ">
         &
       </p>

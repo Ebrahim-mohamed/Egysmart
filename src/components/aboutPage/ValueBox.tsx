@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export function ValueBox({ title, pra }: { title: string; pra: string }) {
   return (
-    <div className="flex flex-col items-center justify-center ">
-      <div className="w-52 aspect-square rounded-full bg-black flex items-center justify-center gap-2 flex-col text-white flex-1 font-[350] -mb-12 z-20">
+    <div className="flex flex-col items-center justify-center max-[800px]:w-[80%]">
+      <div className="w-52  aspect-square rounded-full bg-black flex items-center justify-center gap-2 flex-col text-white flex-1 font-[350] -mb-12 z-20">
         <Image
           alt={`${title} icon`}
           src={`/about/${title}.svg`}
@@ -15,7 +15,7 @@ export function ValueBox({ title, pra }: { title: string; pra: string }) {
       </div>
       <div
         className="flex items-center justify-center 
-  w-full max-w-[20rem] h-56 
+  w-full max-w-[20rem] h-56 max-[800px]:w-[80%] max-[800px]:max-w-full
   bg-[#d9d9d9]/40 backdrop-blur-md
   text-[1rem] text-center p-4 text-white "
       >

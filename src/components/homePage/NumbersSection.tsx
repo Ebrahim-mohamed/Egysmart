@@ -20,7 +20,7 @@ export function NumbersSection() {
           </p>
         }
       />
-      <div className="w-full flex items-center justify-between gap-4">
+      <div className="w-full flex items-center justify-between gap-4 max-[750px]:flex-col">
         {numbers.map((number) => (
           <NumberComponent
             number={number.number}

@@ -25,17 +25,17 @@ export function MostTextPattern({
         &#x2014; {redText}
       </p>
       <div
-        className={`${horz ? " flex items-center justify-between gap-4 " : " flex flex-col gap-4"}`}
+        className={`${horz ? " flex items-center justify-between gap-4 max-[850px]:flex-col max-[850px]:items-start " : " flex flex-col gap-4"}`}
       >
         <div>
           <p
-            className={`text-[4rem] font-medium text-white leading-[110%] ${isCenter && " text-center "} `}
+            className={`text-[4rem] max-[1000px]:text-[3.5rem] max-[800px]:text-[2.5rem] font-medium text-white leading-[110%] ${isCenter && " text-center "} `}
           >
             {whiteText}
           </p>
           {blueText && (
             <p
-              className={`text-[4rem] font-medium  text-[#277FCD] ${isCenter && " text-center "} `}
+              className={`text-[4rem] max-[1000px]:text-[3.5rem] max-[800px]:text-[2.5rem] font-medium  text-[#277FCD] ${isCenter && " text-center "} `}
             >
               {blueText}
             </p>

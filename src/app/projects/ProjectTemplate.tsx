@@ -25,11 +25,11 @@ export function ProjectTemplate({
 }) {
   return (
     <div
-      className={`${num % 2 === 0 ? "flex" : "flex-row-reverse flex"} gap-10 py-16 border-b border-[#7A8693]`}
+      className={`${num % 2 === 0 ? "flex max-[800px]:flex-col " : "flex-row-reverse flex max-[800px]:flex-col "} gap-10 py-16 border-b border-[#7A8693]`}
     >
       <img
-        src={`https://api.egysmart.org/uploads/${img}`}
-        className="w-[55%]"
+        src={`http://localhost:4002/uploads/${img}`}
+        className="w-[55%] max-[800px]:w-full"
       />
 
       <div className="flex-1 flex flex-col gap-10 text-white">
