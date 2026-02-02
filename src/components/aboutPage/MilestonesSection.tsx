@@ -26,12 +26,12 @@ export function MilestonesSection() {
             year="2015"
           />
           <MilestoneBox
-            pra="Started with specalized industrial flooring."
+            pra="Expanded to have our first turn-key project been awarded."
             title="Expansion"
             year="2019"
           />
           <MilestoneBox
-            pra="Started with specalized industrial flooring."
+            pra="Started to undertake end to end execution projects."
             title="Turnkey Leadership"
             year="2014"
           />

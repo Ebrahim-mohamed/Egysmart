@@ -41,8 +41,11 @@ export function Footer() {
         <div className="flex flex-col gap-10">
           <div className="flex items-start justify-between w-full">
             <p className="text-[1rem] font-[325] text-white">
-              Engineering excellence built on a foundation of trust, <br />{" "}
-              integrity and modern innovation.
+              Egy Smart is specialized in modern engineering that focus <br />{" "}
+              on analysis, design, and innovation of contemporary <br />{" "}
+              construction, founded in 2015. <br /> Our team is committed to
+              consistently deliver high-quality, <br /> innovative, safe
+              projects on time.
             </p>
             <div className="flex flex-col items-start justify-center gap-6">
               {firstLinks.map((link) => (

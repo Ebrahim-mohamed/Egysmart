@@ -4,16 +4,15 @@ export function FirstSection() {
   return (
     <div className="p-[var(--sectionPadding)] bg-[#0A0A0A]" id="first">
       <MostTextPattern
-        blueText="Specialized Expertise"
+        blueText="Dedicated Expertise"
         redText="Our Subsidiaries"
-        whiteText="Building Strength Through "
+        whiteText="Extending Mastery Through "
         pra={
           <span>
-            At EGY Smart, growth is driven by focus and specialization. Our
-            subsidiaries operate as independent experts while sharing one
-            unified vision of quality, innovation, and performance. Through
-            Corners and Maaden, we extend our capabilities across interior
-            finishing, bespoke furniture, and premium stainless-steel.
+             EGY Smart operates through two dedicated subsidiaries: Corners,
+            providing top-notch interior finishing and bespoke furniture design
+            services, and Maaden, crafting elegant and durable stainless steel
+            kitchenware and home accessories.
           </span>
         }
         horz

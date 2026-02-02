@@ -2,20 +2,21 @@ import { NumberComponent } from "../NumberComponent";
 import { SecondTextPattern } from "../SecondTextPattern";
 
 const numbers = [
-  { number: 25, icon: "+", title: "YEARS OF  EXPERIENCE" },
-  { number: 120, title: "MAJOR PROJECTS" },
-  { number: 500, icon: "K", title: "SQUARE METERS BUILT" },
-  { number: 100, icon: "%", title: "SQUARE METERS BUILT" },
+  { number: 10, icon: "+", title: "YEARS OF  EXPERIENCE" },
+  { number: 100, icon: "+", title: " COMPLETED PROJECTS" },
+  { number: 775, icon: "K", title: "SQUARE METERS BUILT" },
+  { number: 100, icon: "%", title: "REVENUE" },
 ];
 export function NumbersSection() {
   return (
     <div className="p-[var(--sectionPadding)] flex items-center justify-center gap-12 flex-col bg-[url('/home/numbersBackground.webp')] bg-cover bg-no-repeat ">
+      \
       <SecondTextPattern
         redText="OUR PROVED TRACK RECORD"
         title={
           <p>
-            Build <span className="text-[#277FCD]">the future</span> on a <br />{" "}
-            foundation of proven <br /> results
+            Extensive <span className="text-[#277FCD]">Experience</span>
+            <br /> Across All Project <br /> Types
           </p>
         }
       />

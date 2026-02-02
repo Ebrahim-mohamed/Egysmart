@@ -59,12 +59,12 @@ export function FeedbacksSection() {
       {/* Title */}
       <div className="mb-14">
         <SecondTextPattern
-          redText="OUR PORTFOLIO"
+          redText="Client Satisfaction"
           title={
             <p className="text-[4rem] font-[350] text-white">
-              What <span className="text-[#277FCD]">People</span> Say
+              Our <span className="text-[#277FCD]">Partners</span>
               <br />
-              About Us
+              Feedback
             </p>
           }
         />

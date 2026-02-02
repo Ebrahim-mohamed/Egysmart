@@ -139,7 +139,7 @@ export function Form() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-white text-black py-3 font-semibold disabled:opacity-50"
+          className="bg-[#277FCD] text-white py-3 font-semibold disabled:opacity-50 cursor-pointer"
         >
           {loading ? "Submitting..." : "Send Message"}
         </button>

@@ -6,12 +6,12 @@ export function WhoSection() {
       className="flex items-start justify-between gap-10 p-[var(--sectionPadding)]"
       id="first"
     >
-      <div className="w-[50%]">
+      <div className="w-[60%]">
         <MostTextPattern
-          blueText="Integrity in Every Beam."
+          blueText="Safe Projects On Time."
           redText="Who We Are"
-          whiteText="Precision in Every Blueprint."
-          pra="Architects of momentum. Creators of landmarks. We transform raw ambition into structural reality"
+          whiteText="Uncompromising Excellence In Every Detail "
+          pra="We are dedicated to making a meaningful impact in construction with integrity, performance, and customer satisfaction at our core. "
         />
       </div>
       <div>

@@ -14,8 +14,9 @@ export default function About() {
         title="We Build Life"
         pra={
           <span>
-            Dedicated to innovation, quality, and integrity in modern <br />
-            construction since 2015.
+            Our dedication is to deliver safe, innovative, and top-quality{" "}
+            <br />
+            outcomes that ensure both performance and client satisfaction
           </span>
         }
       />

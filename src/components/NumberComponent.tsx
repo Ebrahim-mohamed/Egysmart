@@ -30,7 +30,7 @@ export function NumberComponent({
     <div className={`relative  flex flex-col items-center justify-center`}>
       {icon && (
         <p
-          className={`absolute top-0  ${isSmall ? " text-[1.5rem] right-0 " : " text-[2.5rem] -right-4 "} font-bold text-[#277FCD]`}
+          className={`absolute top-0  ${isSmall ? " text-[1.5rem] -right-6 " : " text-[2.5rem] -right-4 "} font-bold text-[#277FCD]`}
         >
           {icon}
         </p>

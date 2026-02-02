@@ -8,12 +8,13 @@ export function InformationBox() {
           Contact Information
         </h1>
         <p className="text-[1rem] leading-[160%] font-normal text-[#C9C9C9]">
-          At EGY Smart, we believe strong projects start with clear
-          communication. <br /> Whether you’re a client planning your next
-          development or a supplier <br /> seeking a trusted partnership, our
-          team is ready to listen, collaborate, and <br /> deliver. Reach out to
-          us and let’s take the first step toward building lasting <br /> value
-          together.
+          At EGY Smart, we believe that successful projects are built on the
+          foundation <br /> of effective communication. Whether you are a client
+          planning your next <br /> development venture or a supplier seeking a
+          trusted partnership, our team is <br /> ready to collaborate with you,
+          and deliver the results you aspire to achieve. <br /> Reach out to us
+          today, and let your first step be toward creating lasting value <br />{" "}
+          and enduring accomplishments.
         </p>
       </div>
       <div className="flex items-start">

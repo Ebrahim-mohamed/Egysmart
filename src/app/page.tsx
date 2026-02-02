@@ -14,15 +14,10 @@ export default function Home() {
         page="home"
         title={
           <span>
-            BUILDING <br /> WHAT ENDURES
+            Building The Future <br /> With Precision
           </span>
         }
-        pra={
-          <span>
-            Engineering precision for modern age. <br /> Constructing the
-            foundations of tomorrow.
-          </span>
-        }
+        pra={<span>EGYSMART where vision meets exactness</span>}
       />
       <WhoSection />
       <NumbersSection />

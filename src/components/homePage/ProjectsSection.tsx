@@ -51,7 +51,7 @@ export function ProjectsSection() {
           redText="OUR PORTFOLIO"
           whiteText="Signature"
           blueText="Developments"
-          pra="Explore our landmark engineering feats across the region. We build trust through precision and strength"
+          pra="Egy Smart provides comprehensive construction and renovation services, focusing on turn-key projects, specialized tasks, and cutting-edge engineering solutions."
         />
 
         <div className="flex items-end justify-center gap-4">

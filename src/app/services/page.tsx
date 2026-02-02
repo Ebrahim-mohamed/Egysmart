@@ -8,7 +8,12 @@ export default function Services() {
       <Hero
         page="services"
         title="Our Services"
-        pra="End-to-end construction solutions built on quality, safety, and innovation."
+        pra={
+          <span>
+            We guarantee satisfaction by supplying secure, novel, and premium
+            solutions <br /> engineered for outstanding performance and quality
+          </span>
+        }
       />
       <FutureSection />
       <ServiceBox

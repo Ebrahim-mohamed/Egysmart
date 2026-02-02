@@ -17,7 +17,7 @@ export function Hero({
     >
       {page === "home" && (
         <p className="text-[1rem] font-[1000] text-[#BBC4D1]">
-          Est 2024 - CAIRO, EGYPT
+          Est 2015 - CAIRO, EGYPT
         </p>
       )}
       <div className="font-black text-[7.5rem] leading-[100%]">{title}</div>

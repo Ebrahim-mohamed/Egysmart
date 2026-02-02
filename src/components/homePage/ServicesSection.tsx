@@ -16,7 +16,7 @@ const servicesAbove = [
   },
   {
     title: "Concrete Flooring",
-    pra: "End to end execution from concept to reality, we handle every phase with unified responsibility",
+    pra: "EGY SMART specializes in all aspects of concrete flooring, expertly catering to both indoor and outdoor applications.",
     link: "services/#concreteFlooring",
     img: "concreteFlooring",
     class: " min-h-[35rem] flex-1 ",
@@ -33,8 +33,8 @@ export function ServicesSection() {
         />
         <div>
           <p className="text-white text-[1rem] leading-[160%] font-normal mb-14">
-            We deliver precision engineering across four core <br /> pillar
-            transforming complex challenges into <br /> enduring structures
+            We prioritize integrity and innovation in all aspects <br /> of our
+            work, ranging from design phase to full <br /> project execution
           </p>
           <Link
             href="/services"
@@ -61,8 +61,8 @@ export function ServicesSection() {
           title="Protective Coating"
           pra={
             <span>
-              End to end execution from concept to reality, we handle every
-              phase <br /> with unified responsibility
+              EGYSMART delivers advanced epoxy coating systems designed for
+              <br /> maximum protection across all sectors.
             </span>
           }
           img="protectiveCoating"

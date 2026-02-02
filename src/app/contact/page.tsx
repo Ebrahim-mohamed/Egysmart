@@ -8,7 +8,7 @@ export default function Contact() {
       <Hero
         page="contact"
         title="Contact Us"
-        pra="Let’s build something that lasts."
+        pra="Let's build together. Contact us to begin."
       />
       <CommunicationSection />
       <EndSection />
