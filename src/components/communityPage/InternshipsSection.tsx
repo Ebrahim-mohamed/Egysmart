@@ -28,7 +28,7 @@ export function InternshipsSection() {
           </span>
         }
       />
-      <div className="flex gap-4">
+      <div className="flex gap-4 max-[900px]:flex-col">
         {internships.map((internship) => (
           <InternshipBox
             des={internship.des}

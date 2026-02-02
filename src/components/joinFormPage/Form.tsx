@@ -41,7 +41,7 @@ export function Form() {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     try {
-      const res = await fetch("https://api.egysmart.org/api/join", {
+      const res = await fetch("http://localhost:4002/api/join", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -60,7 +60,7 @@ export function Form() {
   };
 
   return (
-    <div className="w-[45%]">
+    <div className="w-[45%] max-[1100px]:w-[70%] max-[600px]:w-[90%]">
       {/* FORM */}
       <form
         onSubmit={handleSubmit(onSubmit)}

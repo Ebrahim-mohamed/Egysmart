@@ -30,7 +30,7 @@ export function ValuesSection() {
           </p>
         }
       />
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-4 max-[800px]:flex-col max-[800px]:w-full">
         {values.map((value) => (
           <ValueBox pra={value.pra} title={value.title} key={value.title} />
         ))}

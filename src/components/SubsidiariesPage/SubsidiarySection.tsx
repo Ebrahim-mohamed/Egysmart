@@ -25,10 +25,10 @@ export function SubsidiarySection({
         width={800}
         height={800}
         src={`/subsidiary/${img}.webp`}
-        className="min-h-192"
+        className="min-h-192 max-[1000px]:h-220 max-[600px]:hidden"
       />
       <div
-        className={`flex flex-col p-12  border border-white/10 bg-white/15 backdrop-blur-[12.9px] gap-6 ${isTow ? " -mr-80 " : " -ml-80 "} max-h-160`}
+        className={`flex flex-col p-12  border border-white/10 bg-white/15 backdrop-blur-[12.9px] gap-6 ${isTow ? " -mr-80 max-[1000px]:-mr-200 max-[600px]:mr-0 " : " -ml-80 max-[1000px]:-ml-200 max-[600px]:ml-0 "} max-h-160 max-[1000px]:max-h-200 max-[1000px]:min-w-180 max-[600px]:min-w-100 `}
       >
         <Image
           alt={icon}

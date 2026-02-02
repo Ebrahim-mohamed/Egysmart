@@ -22,7 +22,7 @@ export function FooterLink({ name, to }: { name: string; to: string }) {
     return (
       <Link
         href={`/${to}`}
-        className="text-[#277FCD] text-[1.25rem] font-bold mb-4"
+        className="text-[#277FCD] text-[1.25rem] font-bold mb-4 max-[800px]:mb-0"
       >
         {name}
       </Link>

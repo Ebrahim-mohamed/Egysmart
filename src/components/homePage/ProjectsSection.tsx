@@ -27,7 +27,7 @@ export function ProjectsSection() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/projects");
+        const res = await fetch("http://localhost:4002/api/projects");
         const data = await res.json();
         setProjects(data);
       } catch (err) {
@@ -46,7 +46,7 @@ export function ProjectsSection() {
       id="projects"
     >
       {/* ================= TITLE ================= */}
-      <div className="mb-14 flex justify-between items-end gap-6">
+      <div className="mb-14 flex justify-between items-end gap-6 max-[600px]:flex-col max-[600px]:items-start">
         <MostTextPattern
           redText="OUR PORTFOLIO"
           whiteText="Signature"
@@ -75,7 +75,7 @@ export function ProjectsSection() {
       <Swiper
         modules={[Autoplay, Navigation]}
         loop
-        slidesPerView={1.4}
+        slidesPerView={window.innerWidth <= 800 ? 1 : 1.4}
         speed={700}
         autoplay={{
           delay: 2500,
@@ -98,7 +98,7 @@ export function ProjectsSection() {
                 title={project.title}
                 location="Egypt"
                 bue={`${project.bua.toLocaleString()} m²`}
-                img={`https://api.egysmart.org/uploads/${project.image}`}
+                img={`http://localhost:4002/uploads/${project.image}`}
               />
             </div>
           </SwiperSlide>

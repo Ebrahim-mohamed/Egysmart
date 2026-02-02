@@ -39,7 +39,7 @@ export function JobsSection() {
           </span>
         }
       />
-      <div className="grid grid-cols-4 gap-4">
+      <div className=" flex flex-wrap gap-4 items-center justify-center">
         {jobs.map((job) => (
           <JobBox des={job.des} title={job.title} key={job.des} />
         ))}

@@ -24,7 +24,7 @@ export function NewsSection() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/news", {
+        const res = await fetch("http://localhost:4002/api/news", {
           cache: "no-store",
         });
 
@@ -76,7 +76,7 @@ export function NewsSection() {
         modules={[Autoplay, Navigation]}
         loop
         centeredSlides
-        slidesPerView={1.5}
+        slidesPerView={window.innerWidth <= 800 ? 1 : 1.5}
         spaceBetween={40}
         speed={700}
         autoplay={{
@@ -92,7 +92,7 @@ export function NewsSection() {
         {news.map((item) => (
           <SwiperSlide
             key={item._id}
-            className="flex justify-center items-center"
+            className="flex justify-center items-center  "
           >
             <NewsBox title={item.title} pra={item.pra} his={item.his} />
           </SwiperSlide>

@@ -12,20 +12,21 @@ const servicesAbove = [
     ),
     link: "services/#turnkeyProjects",
     img: "turnkeyProjects",
-    class: " min-h-[35rem] w-[65%] ",
+    class:
+      " min-h-[35rem] w-[65%] max-[900px]:w-full max-[900px]:min-h-[25rem] ",
   },
   {
     title: "Concrete Flooring",
     pra: "EGY SMART specializes in all aspects of concrete flooring, expertly catering to both indoor and outdoor applications.",
     link: "services/#concreteFlooring",
     img: "concreteFlooring",
-    class: " min-h-[35rem] flex-1 ",
+    class: " min-h-[35rem] flex-1 max-[900px]:min-h-[25rem] ",
   },
 ];
 export function ServicesSection() {
   return (
     <div className="p-[var(--sectionPadding)] bg-[#0A0A0A] ">
-      <div className="flex items-center justify-between gap-14 mb-14">
+      <div className="flex items-center justify-between gap-14 mb-14 max-[700px]:flex-col max-[700px]:items-start">
         <MostTextPattern
           blueText="Layer by Layer."
           redText="OUR EXPERTISE"
@@ -45,7 +46,7 @@ export function ServicesSection() {
         </div>
       </div>
       <div className="flex flex-col gap-4 w-full">
-        <div className="flex gap-4">
+        <div className="flex gap-4 max-[900px]:flex-col">
           {servicesAbove.map((ser) => (
             <ServiceBox
               classes={ser.class}

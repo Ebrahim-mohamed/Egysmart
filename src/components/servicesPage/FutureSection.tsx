@@ -10,7 +10,7 @@ const numbers = [
 export function FutureSection() {
   return (
     <div
-      className=" p-[var(--sectionPadding)] flex gap-14 items-start justify-between bg-[#0A0A0A]"
+      className=" p-[var(--sectionPadding)] flex max-[900px]:flex-col gap-14 items-start justify-between bg-[#0A0A0A]"
       id="first"
     >
       <div>
@@ -21,7 +21,7 @@ export function FutureSection() {
           whiteText="Building the future,"
           pra="EGY SMART provides comprehensive construction and renovation solutions, combining expert project management with specialized custom works and premium flooring systems. From protective coatings to full turnkey projects, we deliver end-to-end services that ensure structural excellence, innovative design, and flawless execution. Dedicated to safety, sustainability, and exceptional craftsmanship, we consistently achieve high-performance results that inspire confidence and guarantee complete client satisfaction."
         />
-        <div className="w-full flex items-center justify-between gap-4 mt-8">
+        <div className="w-full flex items-center  justify-between gap-4 mt-8">
           {numbers.map((number) => (
             <NumberComponent
               number={number.number}
@@ -33,9 +33,9 @@ export function FutureSection() {
           ))}
         </div>
       </div>
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-4 items-center max-[900px]:flex-col max-[900px]:w-full">
         <FutureImage img="protectiveCoating" title="Protective Coating" />
-        <div className=" flex flex-col gap4">
+        <div className=" flex flex-col gap-4 max-[900px]:w-full ">
           <FutureImage img="turnkeyProjects" title="Turnkey Projects" />
           <FutureImage img="concreteFlooring" title="Concrete Flooring" />
         </div>

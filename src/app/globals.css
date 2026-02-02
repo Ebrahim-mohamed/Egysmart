@@ -3,6 +3,32 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@media (max-width: 1200px) {
+  html {
+    font-size: 90%;
+  }
+}
+@media (max-width: 900px) {
+  html {
+    font-size: 85%;
+  }
+}
+@media (max-width: 850px) {
+  html {
+    font-size: 75%;
+  }
+}
+@media (max-width: 550px) {
+  html {
+    font-size: 65%;
+  }
+}
+@media (max-width: 700px) {
+  :root {
+    --sectionPadding: 3rem;
+  }
+}
+
 :root {
   /* --sectionPadding: 9rem 5rem; */
   --sectionPadding: 5rem;

@@ -39,25 +39,25 @@ export function Footer() {
       </Link>
       <div>
         <div className="flex flex-col gap-10">
-          <div className="flex items-start justify-between w-full">
-            <p className="text-[1rem] font-[325] text-white">
+          <div className="flex items-start justify-between  w-full max-[800px]:flex-col max-[800px]:gap-4 ">
+            <p className="text-[1rem] font-[325] text-white max-[800px]:mb-6">
               Egy Smart is specialized in modern engineering that focus <br />{" "}
               on analysis, design, and innovation of contemporary <br />{" "}
               construction, founded in 2015. <br /> Our team is committed to
               consistently deliver high-quality, <br /> innovative, safe
               projects on time.
             </p>
-            <div className="flex flex-col items-start justify-center gap-6">
+            <div className="flex flex-col items-start justify-center gap-6 max-[800px]:gap-4">
               {firstLinks.map((link) => (
                 <FooterLink name={link.link} to={link.to} key={link.to} />
               ))}
             </div>
-            <div className="flex flex-col items-start justify-center gap-6">
+            <div className="flex flex-col items-start justify-center gap-6 max-[800px]:gap-4">
               {secondLinks.map((link) => (
                 <FooterLink name={link.link} to={link.to} key={link.to} />
               ))}
             </div>
-            <div className="flex flex-col items-start justify-center gap-6">
+            <div className="flex flex-col items-start justify-center gap-6 max-[800px]:gap-4">
               {thirdLinks.map((link) => (
                 <FooterLink name={link.link} to={link.to} key={link.to} />
               ))}

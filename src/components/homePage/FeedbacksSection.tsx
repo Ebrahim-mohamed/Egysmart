@@ -75,7 +75,7 @@ export function FeedbacksSection() {
         modules={[Autoplay, Navigation]}
         loop
         centeredSlides
-        slidesPerView={1.8}
+        slidesPerView={window.innerWidth <= 800 ? 1 : 1.8}
         speed={700}
         autoplay={{
           delay: 2500,
