@@ -16,6 +16,7 @@ type Project = {
   image: string;
   serviceKind: ServiceKind;
   title: string;
+  client: string; // ✅ NEW
   budget: number;
   status: "planned" | "in-progress" | "completed";
   duration: string;
@@ -27,6 +28,7 @@ type Project = {
 /* ================= SCHEMA ================= */
 const projectSchema = z.object({
   title: z.string().min(1, "Title is required"),
+  client: z.string().min(1, "Client name is required"), // ✅ NEW
   image: z.any().optional(),
   serviceKind: z.enum([
     "Turnkey Projects",
@@ -111,6 +113,7 @@ export default function ProjectsTab() {
   const onSubmit = async (data: ProjectForm) => {
     const formData = new FormData();
     formData.append("title", data.title);
+    formData.append("client", data.client); // ✅ NEW
     if (data.image && (data.image as unknown as FileList)[0])
       formData.append("image", (data.image as unknown as FileList)[0]);
     formData.append("serviceKind", data.serviceKind);
@@ -158,6 +161,7 @@ export default function ProjectsTab() {
   const handleEdit = (project: Project) => {
     setEditingProject(project);
     setValue("title", project.title);
+    setValue("client", project.client); // ✅ NEW
     setValue("serviceKind", project.serviceKind);
     setValue("budget", project.budget);
     setValue("status", project.status);
@@ -218,6 +222,10 @@ export default function ProjectsTab() {
                     {new Date(project.createdAt).toLocaleDateString()}
                   </span>
                 </div>
+
+                <p className="text-sm mt-1">
+                  <b>Client:</b> {project.client}
+                </p>
 
                 <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">
                   {project.serviceKind ?? "N/A"}
@@ -289,6 +297,20 @@ export default function ProjectsTab() {
 
           <div>
             <label className="block mb-1 text-gray-700 dark:text-white">
+              Client Name
+            </label>
+            <input
+              {...register("client")}
+              placeholder="Client Name"
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
+            />
+            {errors.client && (
+              <p className="text-red-600 text-sm">{errors.client.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="block mb-1 text-gray-700 dark:text-white">
               Project Image
             </label>
             <input
@@ -297,9 +319,6 @@ export default function ProjectsTab() {
               accept="image/*"
               className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
             />
-            {errors.image && (
-              <p className="text-red-600 text-sm">{errors.image.message}</p>
-            )}
           </div>
 
           <div>

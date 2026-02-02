@@ -142,7 +142,7 @@ export default function LogosTab() {
         {logos.map((logo) => (
           <div
             key={logo._id}
-            className="border rounded-lg p-4 bg-white dark:bg-gray-800 shadow-sm flex flex-col items-center justify-between"
+            className="border bg-black rounded-lg p-4  dark:bg-gray-800 shadow-sm flex flex-col items-center justify-between"
           >
             <img
               src={`http://localhost:4002/uploads/${logo.image}`}
