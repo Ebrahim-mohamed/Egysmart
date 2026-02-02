@@ -5,7 +5,7 @@ const numbers = [
   { number: 10, icon: "+", title: "YEARS OF  EXPERIENCE" },
   { number: 100, icon: "+", title: " COMPLETED PROJECTS" },
   { number: 775, icon: "K", title: "SQUARE METERS BUILT" },
-  { number: 100, icon: "%", title: "REVENUE" },
+  { number: 500, icon: "M", title: "REVENUE" },
 ];
 export function FutureSection() {
   return (
