@@ -21,7 +21,7 @@ const SERVICE_MAP: Record<string, string> = {
 };
 
 async function getProjects() {
-  const res = await fetch("http://localhost:4002/api/projects", {
+  const res = await fetch("https://api.egysmart.org/api/projects", {
     cache: "no-store",
   });
 
