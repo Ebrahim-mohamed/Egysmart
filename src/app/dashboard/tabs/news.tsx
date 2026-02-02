@@ -274,7 +274,9 @@ export default function NewsTab() {
               className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
             />
             {errors.image && (
-              <p className="text-red-600 text-sm">{errors.image.message}</p>
+              <p className="text-red-600 text-sm">
+                {errors.image.message?.toString()}
+              </p>
             )}
           </div>
 

@@ -178,7 +178,9 @@ export default function LogosTab() {
               className="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:text-white"
             />
             {errors.image && (
-              <p className="text-red-600 text-sm">{errors.image.message}</p>
+              <p className="text-red-600 text-sm">
+                {errors.image.message?.toString()}
+              </p>
             )}
           </div>
 
