@@ -28,7 +28,7 @@ const social = [
 ];
 export function Footer() {
   return (
-    <div className="p-20 flex flex-col gap-12 bg-[#0A0A0A]">
+    <div className="p-20 max-[600px]:px-12 flex flex-col gap-12 bg-[#0A0A0A]">
       <div className="flex items-center justify-between gap-6 max-[500px]:flex-col max-[500px]:items-start">
         <Link href="/" className="w-fit">
           <Image
