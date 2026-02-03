@@ -28,7 +28,7 @@ export function ProjectTemplate({
       className={`${num % 2 === 0 ? "flex max-[800px]:flex-col " : "flex-row-reverse flex max-[800px]:flex-col "} gap-10 py-16 border-b border-[#7A8693]`}
     >
       <img
-        src={`https://api.egysmart.org/uploads/${img}`}
+        src={`http://localhost:4002/uploads/${img}`}
         className="w-[55%] max-[800px]:w-full"
       />
 

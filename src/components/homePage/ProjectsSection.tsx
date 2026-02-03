@@ -27,7 +27,7 @@ export function ProjectsSection() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/projects");
+        const res = await fetch("http://localhost:4002/api/projects");
         const data = await res.json();
         setProjects(data);
       } catch (err) {
@@ -98,7 +98,7 @@ export function ProjectsSection() {
                 title={project.title}
                 location="Egypt"
                 bue={`${project.bua.toLocaleString()} m²`}
-                img={`https://api.egysmart.org/uploads/${project.image}`}
+                img={`http://localhost:4002/uploads/${project.image}`}
               />
             </div>
           </SwiperSlide>
