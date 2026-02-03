@@ -12,30 +12,9 @@ export function MindsSection() {
         </p>
       </div>
       <div className="flex items-center justify-center gap-8">
-        <MindBox
-          img="placeholder"
-          jop="Head of Supply Chain"
-          name="Ahmed Tawfek"
-          num={1}
-        />
-        <MindBox
-          img="placeholder"
-          jop="Head of Supply Chain"
-          name="Ahmed Tawfek"
-          num={2}
-        />
-        <MindBox
-          img="placeholder"
-          jop="Head of Supply Chain"
-          name="Ahmed Tawfek"
-          num={3}
-        />
-        <MindBox
-          img="placeholder"
-          jop="Head of Supply Chain"
-          name="Ahmed Tawfek"
-          num={4}
-        />
+        <MindBox img="person1" jop="COO" name="Ahmed Magdy" num={1} />
+        <MindBox img="person2" jop="CLO" name="Amr Sayed" num={2} />
+        <MindBox img="person3" jop="CCO" name="Mostafa Naguib" num={3} />
       </div>
     </div>
   );
