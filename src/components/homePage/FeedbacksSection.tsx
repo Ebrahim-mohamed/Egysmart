@@ -26,7 +26,7 @@ export function FeedbacksSection() {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const res = await fetch("http://localhost:4002/api/testimonials", {
+        const res = await fetch("https://api.egysmart.org/api/testimonials", {
           cache: "no-store",
         });
 
