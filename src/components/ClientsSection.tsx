@@ -67,7 +67,7 @@ export function ClientsSection() {
             <img
               src={`https://api.egysmart.org/uploads/${logo.image}`}
               alt="client-logo"
-              className="h-18 object-contain pointer-events-none"
+              className="h-22 object-contain pointer-events-none"
               draggable={false}
             />
           </SwiperSlide>
