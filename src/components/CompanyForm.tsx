@@ -41,7 +41,7 @@ export default function CompanyProfileForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex   max-w-sm">
+    <form onSubmit={handleSubmit} className="flex ">
       <input
         type="email"
         placeholder="Enter your email..."
@@ -56,7 +56,7 @@ export default function CompanyProfileForm() {
         disabled={loading}
         className="bg-[#277FCD] text-white p-2 cursor-pointer"
       >
-        {loading ? "Downloading..." : "Download Catalog"}
+        {loading ? "Downloading..." : "Download Company Profile"}
       </button>
     </form>
   );
