@@ -17,7 +17,7 @@ export function ServiceBox({
 }) {
   return (
     <div
-      className="py-50 px-20 bg-cover bg-no-repeat flex items-center justify-center flex-col relative"
+      className="py-50 px-20 max-[650px]:py-25 max-[650px]:px-10 bg-cover bg-no-repeat flex items-center justify-center flex-col relative"
       style={{ backgroundImage: `url(/services/${img}.webp)` }}
       id={id}
     >
@@ -28,7 +28,7 @@ export function ServiceBox({
       ></div>
       <Link
         href={`/projects/${cat}`}
-        className="p-6 bg-[#FFFFFF14] border-[#FFFFFF0A] border backdrop-blur-[4.5px] min-w-3xl relative"
+        className="p-6 bg-[#FFFFFF14] border-[#FFFFFF0A] border backdrop-blur-[4.5px] min-w-3xl max-[650px]:min-w-full relative"
       >
         <div className=" absolute top-2 right-4 text-[1.5rem] text-white">
           &#x2197;
