@@ -11,8 +11,6 @@ const formSchema = z.object({
   email: z.string().email("Invalid email address"),
   phone: z.string().min(11, "Phone must be at least 11 characters"),
   userType: z.enum(["jop", "intern"]),
-  position: z.string().optional(),
-  internStatus: z.enum(["graduate", "undergraduate"]).optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -28,7 +26,7 @@ export function Form() {
   const [loading, setLoading] = useState(false);
   const [jobs, setJobs] = useState<Job[]>([]);
 
-  // Separate state to track the selected values — same as position works natively
+  // EXACT SAME PATTERN for both
   const [selectedInternStatus, setSelectedInternStatus] = useState("");
   const [selectedPosition, setSelectedPosition] = useState("");
 
@@ -57,9 +55,20 @@ export function Form() {
   }, []);
 
   const onSubmit = async (data: FormData) => {
-    setLoading(true);
+    // VALIDATION LIKE JOB
+    if (userType === "intern" && !selectedInternStatus) {
+      setStatus("error");
+      return;
+    }
 
-    // Build payload — only include the field relevant to the userType
+    if (userType === "jop" && !selectedPosition) {
+      setStatus("error");
+      return;
+    }
+
+    setLoading(true);
+    setStatus(null);
+
     const payload =
       userType === "intern"
         ? {
@@ -67,7 +76,7 @@ export function Form() {
             email: data.email,
             phone: data.phone,
             userType: "intern",
-            internStatus: selectedInternStatus,
+            internStatus: selectedInternStatus, // ✅ SAME LOGIC AS POSITION
           }
         : {
             name: data.name,
@@ -133,7 +142,7 @@ export function Form() {
           {...register("phone")}
         />
 
-        {/* USER TYPE TOGGLE */}
+        {/* USER TYPE */}
         <div>
           <p className="text-white text-[1.2rem] font-normal mb-4">
             What are you applying for?
@@ -142,7 +151,7 @@ export function Form() {
           <div className="flex mb-4">
             <button
               type="button"
-              className={`p-4 font-medium text-[1.25rem] flex-1 cursor-pointer ${
+              className={`p-4 font-medium hover:cursor-pointer text-[1.25rem] flex-1 ${
                 userType === "intern"
                   ? "text-black bg-white"
                   : "text-white bg-[#277FCD26]"
@@ -157,7 +166,7 @@ export function Form() {
 
             <button
               type="button"
-              className={`p-4 font-medium text-[1.25rem] flex-1 cursor-pointer ${
+              className={`p-4 font-medium text-[1.25rem] hover:cursor-pointer flex-1 ${
                 userType === "jop"
                   ? "text-black bg-white"
                   : "text-white bg-[#277FCD26]"
@@ -172,7 +181,7 @@ export function Form() {
           </div>
         </div>
 
-        {/* INTERNSHIP STATUS — tracked in plain React state, same as position */}
+        {/* INTERNSHIP STATUS */}
         {userType === "intern" && (
           <div>
             <label className="text-white block mb-2">Internship Status</label>
@@ -194,7 +203,7 @@ export function Form() {
           </div>
         )}
 
-        {/* JOB POSITION — tracked in plain React state */}
+        {/* JOB POSITION */}
         {userType === "jop" && (
           <div>
             <label className="text-white block mb-2">Select Position</label>
@@ -218,7 +227,7 @@ export function Form() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-[#277FCD] text-white py-3 font-semibold disabled:opacity-50 cursor-pointer"
+          className="bg-[#277FCD] text-white py-3 font-semibold disabled:opacity-50"
         >
           {loading ? "Submitting..." : "Send Message"}
         </button>
@@ -226,9 +235,10 @@ export function Form() {
         {status === "success" && (
           <p className="text-green-400 mt-2">Application sent successfully!</p>
         )}
+
         {status === "error" && (
           <p className="text-red-500 mt-2">
-            Something went wrong. Please try again.
+            Please complete all required selections.
           </p>
         )}
       </form>
