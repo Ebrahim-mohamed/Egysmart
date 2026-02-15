@@ -34,7 +34,7 @@ export function ServiceBox({
           &#x2197;
         </div>
         <div className="flex items-center justify-center mb-8 flex-col ">
-          <p className="text-[1.5rem] font-medium text-[#CD2735]">
+          <p className="text-[1.5rem] font-bold text-[#CD2735]">
             &#x2014; {secTitle}
           </p>
           <p className="text-[3rem] text-white">{title}</p>

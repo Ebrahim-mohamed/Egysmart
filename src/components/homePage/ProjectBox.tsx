@@ -19,7 +19,7 @@ export function ProjectBox({
           <p className="text-[1.25rem] font-bold">{location}</p>
         </div>
         <div className="min-w-32">
-          <p className="text-[1rem] font-[325] mb-4">BUE</p>
+          <p className="text-[1rem] font-[325] mb-4">BUA</p>
           <p className="text-[1.25rem] font-bold">{bue}</p>
         </div>
       </div>

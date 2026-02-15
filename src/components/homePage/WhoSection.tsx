@@ -17,7 +17,7 @@ export function WhoSection() {
       <div>
         <p className="text-[7.5rem] font-black text-[#277FCD]">2015</p>
         <p className="text-[1.5rem] font-black text-[#BBC4D1] text-right max-[650px]:text-left">
-          Established in Cairo
+          Established in Egypt
         </p>
         <p className="text-[1rem] font-normal text-[#9EA8B7] text-right max-[650px]:text-left">
           Building a legacy of trust and <br /> structural excellence

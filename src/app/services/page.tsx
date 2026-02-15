@@ -20,7 +20,7 @@ export default function Services() {
         id="turnkeyProjects"
         title="Turnkey Projects"
         img="turnkeyProjects"
-        secTitle="First SERVICE"
+        secTitle="END TO END"
         des={[
           "End-to-end project delivery from concept to handover",
           "Full responsibility for planning, execution, and coordination",
@@ -33,7 +33,7 @@ export default function Services() {
         id="protectiveCoating"
         title="Protective Coating"
         img="protectiveCoating"
-        secTitle="second SERVICE"
+        secTitle="EPOXY COATING"
         des={[
           "Advanced epoxy and chemical-resistant coating systems",
           "Protection against corrosion, abrasion, and harsh conditions",
@@ -46,7 +46,7 @@ export default function Services() {
         id="concreteFlooring"
         title="Concrete Flooring"
         img="concreteFlooring"
-        secTitle="fourth SERVICE"
+        secTitle="HEAVY-DUTY FLOORING"
         des={[
           "High-performance concrete and heavy-duty flooring systems",
           "Solutions designed for industrial and high-traffic environments",

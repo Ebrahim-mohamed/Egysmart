@@ -9,7 +9,7 @@ const links = [
   { name: "About Us", to: "about" },
   { name: "Egy Smart Community", to: "community" },
   { name: "Subsidiary", to: "subsidiary" },
-  { name: "Contact", to: "contact" },
+  { name: "Contact us", to: "contact" },
 ];
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);

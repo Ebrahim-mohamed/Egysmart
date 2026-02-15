@@ -5,7 +5,7 @@ export function ProjectTemplate({
   bua,
   location,
   client,
-  service,
+  category,
   img,
   num,
   bud,
@@ -17,7 +17,7 @@ export function ProjectTemplate({
   bua: string;
   location: string;
   client: string;
-  service: string;
+  category: string;
   img: string;
   num: number;
   bud: number;
@@ -45,8 +45,8 @@ export function ProjectTemplate({
             <p className="font-medium">{location}</p>
           </div>
           <div className="flex gap-6">
-            <p className="font-[325]">Service</p>
-            <p className="font-medium">{service}</p>
+            <p className="font-[325]">Category</p>
+            <p className="font-medium">{category}</p>
           </div>
         </div>
 
@@ -61,7 +61,7 @@ export function ProjectTemplate({
           </div>
           <div className="flex flex-col gap-2">
             <p className="font-[325]">Budget</p>
-            <p className="font-medium">{bud} EGP</p>
+            <p className="font-medium">{bud} M EGP</p>
           </div>
           <div className="flex flex-col gap-2">
             <p className="font-[325]">status</p>

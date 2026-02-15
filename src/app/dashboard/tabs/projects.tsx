@@ -11,35 +11,42 @@ type ServiceKind =
   | "Protective Coating"
   | "Concrete Flooring";
 
+type Categories = "Residence" | "Commercial" | "Industries";
+
 type Project = {
   _id: string;
   image: string;
   serviceKind: ServiceKind;
+  category: Categories;
   title: string;
-  client: string; // ✅ NEW
+  client: string;
   budget: number;
   status: "planned" | "in-progress" | "completed";
   duration: string;
   bua: number;
   scopeOfWork: string;
+  location: string;
+  important: boolean;
   createdAt: string;
 };
 
 /* ================= SCHEMA ================= */
 const projectSchema = z.object({
   title: z.string().min(1, "Title is required"),
-  client: z.string().min(1, "Client name is required"), // ✅ NEW
+  client: z.string().min(1, "Client name is required"),
   image: z.any().optional(),
   serviceKind: z.enum([
     "Turnkey Projects",
     "Protective Coating",
     "Concrete Flooring",
   ]),
+  category: z.enum(["Residence", "Commercial", "Industries"]),
   budget: z.coerce.number().min(1, "Budget must be greater than 0"),
   status: z.enum(["planned", "in-progress", "completed"]),
   duration: z.string().min(1, "Duration required"),
   bua: z.coerce.number().min(1, "BUA must be greater than 0"),
   scopeOfWork: z.string().min(1, "Scope of work required"),
+  location: z.string().min(3, "location required"),
 });
 
 type ProjectForm = z.infer<typeof projectSchema>;
@@ -109,16 +116,35 @@ export default function ProjectsTab() {
     loadProjects();
   }, []);
 
+  /* ---------- TOGGLE IMPORTANT ---------- */
+  const handleToggleImportant = async (id: string) => {
+    try {
+      const res = await fetch(
+        `https://api.egysmart.org/api/projects/${id}/important`,
+        { method: "PATCH" },
+      );
+      if (!res.ok) throw new Error("Failed to toggle important");
+      const updated = await res.json();
+      setProjects((prev) =>
+        prev.map((p) => (p._id === updated._id ? updated : p)),
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   /* ---------- SUBMIT ---------- */
   const onSubmit = async (data: ProjectForm) => {
     const formData = new FormData();
     formData.append("title", data.title);
-    formData.append("client", data.client); // ✅ NEW
+    formData.append("client", data.client);
     if (data.image && (data.image as unknown as FileList)[0])
       formData.append("image", (data.image as unknown as FileList)[0]);
     formData.append("serviceKind", data.serviceKind);
+    formData.append("category", data.category);
     formData.append("budget", String(data.budget));
     formData.append("status", data.status);
+    formData.append("location", data.location);
     formData.append("duration", data.duration);
     formData.append("bua", String(data.bua));
     formData.append("scopeOfWork", data.scopeOfWork);
@@ -161,13 +187,15 @@ export default function ProjectsTab() {
   const handleEdit = (project: Project) => {
     setEditingProject(project);
     setValue("title", project.title);
-    setValue("client", project.client); // ✅ NEW
+    setValue("client", project.client);
     setValue("serviceKind", project.serviceKind);
+    setValue("category", project.category);
     setValue("budget", project.budget);
     setValue("status", project.status);
     setValue("duration", project.duration);
     setValue("bua", project.bua);
     setValue("scopeOfWork", project.scopeOfWork);
+    setValue("location", project.location);
     setOpen(true);
   };
 
@@ -202,7 +230,11 @@ export default function ProjectsTab() {
         {projects.map((project) => (
           <div
             key={project._id}
-            className="flex flex-col md:flex-row border rounded-lg shadow-sm overflow-hidden bg-white dark:bg-gray-800"
+            className={`flex flex-col md:flex-row border rounded-lg shadow-sm overflow-hidden bg-white dark:bg-gray-800 transition-colors ${
+              project.important
+                ? "border-yellow-400 dark:border-yellow-500"
+                : "border-gray-200 dark:border-gray-700"
+            }`}
           >
             <div className="w-full md:w-48 h-32 md:h-auto overflow-hidden flex-shrink-0">
               <img
@@ -214,11 +246,21 @@ export default function ProjectsTab() {
 
             <div className="p-4 flex-1 flex flex-col justify-between">
               <div>
-                <div className="flex justify-between items-start">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    {project.title ?? "Untitled"}
-                  </h3>
-                  <span className="text-xs text-gray-400 dark:text-gray-300">
+                <div className="flex justify-between items-start gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      {project.title ?? "Untitled"}
+                    </h3>
+
+                    {/* IMPORTANT BADGE */}
+                    {project.important && (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-yellow-400 text-yellow-900 uppercase tracking-wide">
+                        ★ Featured
+                      </span>
+                    )}
+                  </div>
+
+                  <span className="text-xs text-gray-400 dark:text-gray-300 whitespace-nowrap shrink-0">
                     {new Date(project.createdAt).toLocaleDateString()}
                   </span>
                 </div>
@@ -230,19 +272,23 @@ export default function ProjectsTab() {
                 <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">
                   {project.serviceKind ?? "N/A"}
                 </p>
+                <p className="text-sm mt-1">
+                  <b>Category:</b> {project.category || "N/A"}
+                </p>
 
                 <div className="flex flex-wrap gap-3 mt-2 text-sm text-gray-700 dark:text-gray-300">
                   <span>
-                    <b>Budget:</b> $
+                    <b>Budget: </b>
                     {project.budget != null
                       ? Number(project.budget).toLocaleString()
-                      : 0}
+                      : 0}{" "}
+                    M EGP
                   </span>
                   <span>
                     <b>Status:</b> {project.status ?? "N/A"}
                   </span>
                   <span>
-                    <b>Duration:</b> {project.duration ?? "N/A"}
+                    <b>Duration:</b> {project.duration ?? "N/A"} m
                   </span>
                   <span>
                     <b>BUA:</b>{" "}
@@ -254,12 +300,28 @@ export default function ProjectsTab() {
                 </div>
 
                 <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                  <b>Location:</b> {project.location ?? "N/A"}
+                </p>
+                <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
                   <b>Scope:</b> {project.scopeOfWork ?? "N/A"}
                 </p>
               </div>
 
               {/* ACTIONS */}
-              <div className="flex gap-4 mt-3">
+              <div className="flex gap-4 mt-3 items-center flex-wrap">
+                <button
+                  onClick={() => handleToggleImportant(project._id)}
+                  className={`text-sm font-medium px-3 py-1 rounded border transition-colors ${
+                    project.important
+                      ? "border-yellow-400 bg-yellow-50 text-yellow-700 hover:bg-yellow-100 dark:bg-yellow-900/20 dark:text-yellow-400 dark:hover:bg-yellow-900/40"
+                      : "border-gray-300 text-gray-600 hover:border-yellow-400 hover:text-yellow-600 dark:border-gray-600 dark:text-gray-400 dark:hover:border-yellow-500 dark:hover:text-yellow-400"
+                  }`}
+                >
+                  {project.important
+                    ? "★ Remove from Slider"
+                    : "☆ Add to Slider"}
+                </button>
+
                 <button
                   onClick={() => handleEdit(project)}
                   className="text-blue-600 hover:underline"
@@ -308,6 +370,19 @@ export default function ProjectsTab() {
               <p className="text-red-600 text-sm">{errors.client.message}</p>
             )}
           </div>
+          <div>
+            <label className="block mb-1 text-gray-700 dark:text-white">
+              Location
+            </label>
+            <input
+              {...register("location")}
+              placeholder="Location"
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
+            />
+            {errors.location && (
+              <p className="text-red-600 text-sm">{errors.location?.message}</p>
+            )}
+          </div>
 
           <div>
             <label className="block mb-1 text-gray-700 dark:text-white">
@@ -332,6 +407,19 @@ export default function ProjectsTab() {
               <option value="Turnkey Projects">Turnkey Projects</option>
               <option value="Protective Coating">Protective Coating</option>
               <option value="Concrete Flooring">Concrete Flooring</option>
+            </select>
+          </div>
+          <div>
+            <label className="block mb-1 text-gray-700 dark:text-white">
+              Category
+            </label>
+            <select
+              {...register("category")}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
+            >
+              <option value="Residence">Residence</option>
+              <option value="Commercial">Commercial</option>
+              <option value="Industries">Industries</option>
             </select>
           </div>
 

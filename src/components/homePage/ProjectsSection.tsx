@@ -15,7 +15,9 @@ type Project = {
   _id: string;
   title: string;
   image: string;
+  location: string;
   bua: number;
+  important: boolean;
   createdAt: string;
 };
 
@@ -23,11 +25,13 @@ export function ProjectsSection() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [currentSlide, setCurrentSlide] = useState(1);
 
-  /* ================= FETCH PROJECTS ================= */
+  /* ================= FETCH IMPORTANT PROJECTS ONLY ================= */
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/projects");
+        const res = await fetch(
+          "https://api.egysmart.org/api/projects/important",
+        );
         const data = await res.json();
         setProjects(data);
       } catch (err) {
@@ -96,7 +100,7 @@ export function ProjectsSection() {
             <div className="project-scale">
               <ProjectBox
                 title={project.title}
-                location="Egypt"
+                location={project.location || "N/A"}
                 bue={`${project.bua.toLocaleString()} m²`}
                 img={`https://api.egysmart.org/uploads/${project.image}`}
               />

@@ -59,7 +59,7 @@ export function JobsSection() {
       {loading ? (
         <p className="text-white">Loading jobs...</p>
       ) : (
-        <div className="flex flex-wrap gap-4 items-center justify-center">
+        <div className="flex flex-wrap gap-4 items-start justify-center">
           {jobs.map((job) => (
             <JobBox
               key={job._id}

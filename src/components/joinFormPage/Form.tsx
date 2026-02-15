@@ -1,31 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../contact/Input";
 
-/* ======================
-   ZOD SCHEMA
-====================== */
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Invalid email address"),
-  phone: z.string().min(11, "phone must be at least 3 characters"),
-  position: z.string().min(3, "Position must be at least 3 characters"),
+  phone: z.string().min(11, "Phone must be at least 11 characters"),
   userType: z.enum(["jop", "intern"]),
+  position: z.string().optional(),
+  internStatus: z.enum(["graduate", "undergraduate"]).optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
-/* ======================
-   FORM COMPONENT
-====================== */
+type Job = {
+  _id: string;
+  title: string;
+};
+
 export function Form() {
   const [userType, setUserType] = useState<"intern" | "jop">("intern");
   const [status, setStatus] = useState<null | "success" | "error">(null);
   const [loading, setLoading] = useState(false);
+  const [jobs, setJobs] = useState<Job[]>([]);
+
+  // Separate state to track the selected values — same as position works natively
+  const [selectedInternStatus, setSelectedInternStatus] = useState("");
+  const [selectedPosition, setSelectedPosition] = useState("");
 
   const {
     register,
@@ -38,19 +43,53 @@ export function Form() {
     defaultValues: { userType: "intern" },
   });
 
+  useEffect(() => {
+    const loadJobs = async () => {
+      try {
+        const res = await fetch("https://api.egysmart.org/api/jobs");
+        const data = await res.json();
+        setJobs(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    loadJobs();
+  }, []);
+
   const onSubmit = async (data: FormData) => {
     setLoading(true);
+
+    // Build payload — only include the field relevant to the userType
+    const payload =
+      userType === "intern"
+        ? {
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            userType: "intern",
+            internStatus: selectedInternStatus,
+          }
+        : {
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            userType: "jop",
+            position: selectedPosition,
+          };
+
     try {
       const res = await fetch("https://api.egysmart.org/api/join", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) throw new Error("Failed to submit form");
 
       setStatus("success");
-      reset({ ...data }); // keep userType selected
+      setSelectedInternStatus("");
+      setSelectedPosition("");
+      reset({ userType });
     } catch (err) {
       console.error(err);
       setStatus("error");
@@ -61,14 +100,13 @@ export function Form() {
 
   return (
     <div className="w-[45%] max-[1100px]:w-[70%] max-[600px]:w-[90%]">
-      {/* FORM */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-6 p-6"
       >
         <div>
           <p className="text-[0.8rem] text-[#FF383C] font-[350]">
-            Join out team – {userType}
+            Join our team – {userType}
           </p>
           <p className="text-[2rem] text-white font-bold">Join us !</p>
         </div>
@@ -95,18 +133,12 @@ export function Form() {
           {...register("phone")}
         />
 
-        <Input
-          label="Position"
-          placeholder="Your position..."
-          error={errors.position?.message}
-          {...register("position")}
-        />
-
+        {/* USER TYPE TOGGLE */}
         <div>
           <p className="text-white text-[1.2rem] font-normal mb-4">
             What are you applying for?
           </p>
-          {/* User Type Toggle */}
+
           <div className="flex mb-4">
             <button
               type="button"
@@ -135,10 +167,53 @@ export function Form() {
                 setValue("userType", "jop");
               }}
             >
-              A jop
+              A job
             </button>
           </div>
         </div>
+
+        {/* INTERNSHIP STATUS — tracked in plain React state, same as position */}
+        {userType === "intern" && (
+          <div>
+            <label className="text-white block mb-2">Internship Status</label>
+            <select
+              value={selectedInternStatus}
+              onChange={(e) => setSelectedInternStatus(e.target.value)}
+              className="w-full p-3 bg-[#277FCD26] text-white"
+            >
+              <option value="" className="text-black">
+                Select status
+              </option>
+              <option value="graduate" className="text-black">
+                Graduate
+              </option>
+              <option value="undergraduate" className="text-black">
+                Undergraduate
+              </option>
+            </select>
+          </div>
+        )}
+
+        {/* JOB POSITION — tracked in plain React state */}
+        {userType === "jop" && (
+          <div>
+            <label className="text-white block mb-2">Select Position</label>
+            <select
+              value={selectedPosition}
+              onChange={(e) => setSelectedPosition(e.target.value)}
+              className="w-full p-3 bg-[#277FCD26] text-white"
+            >
+              <option value="" className="text-black">
+                Select a position
+              </option>
+              {jobs.map((job) => (
+                <option key={job._id} value={job.title} className="text-black">
+                  {job.title}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         <button
           type="submit"

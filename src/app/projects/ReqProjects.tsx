@@ -7,6 +7,7 @@ type Project = {
   client: string;
   image: string;
   serviceKind: string;
+  category: string;
   duration: string;
   bua: number;
   scopeOfWork: string;
@@ -56,7 +57,7 @@ export async function ReqProject({ cat }: { cat: string }) {
             num={index}
             title={project.title}
             client={project.client}
-            service={project.serviceKind}
+            category={project.category || "N/A"}
             duration={project.duration}
             bua={String(project.bua)}
             scop={project.scopeOfWork}

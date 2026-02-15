@@ -1,45 +1,45 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 
-type Contact = {
+type Applicant = {
   _id: string;
   name: string;
   email: string;
   phone: string;
-  position: string;
-  userType: string;
+  position?: string;
+  userType: "jop" | "intern";
+  internStatus?: "graduate" | "undergraduate";
   createdAt: string;
 };
 
-export default function ApplicationsTab() {
-  const [contacts, setContacts] = useState<Contact[]>([]);
+export default function JobsTab() {
+  const [applicants, setApplicants] = useState<Applicant[]>([]);
   const [loading, setLoading] = useState(true);
 
-  /* ================= FETCH ================= */
   useEffect(() => {
-    (async () => {
+    const loadApplicants = async () => {
       try {
         const res = await fetch("https://api.egysmart.org/api/join");
-        if (!res.ok) throw new Error("Failed to fetch contacts");
         const data = await res.json();
-        setContacts(data);
+        setApplicants(data);
       } catch (err) {
         console.error(err);
       } finally {
         setLoading(false);
       }
-    })();
+    };
+
+    loadApplicants();
   }, []);
 
-  /* ================= DELETE ================= */
-  const deleteContact = async (id: string) => {
+  const deleteApplicant = async (id: string) => {
     try {
       await fetch(`https://api.egysmart.org/api/join/${id}`, {
         method: "DELETE",
       });
-      setContacts((prev) => prev.filter((c) => c._id !== id));
+
+      setApplicants(applicants.filter((app) => app._id !== id));
     } catch (err) {
       console.error(err);
     }
@@ -49,64 +49,78 @@ export default function ApplicationsTab() {
 
   return (
     <div className="space-y-6">
-      {/* HEADER */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-          Applications
-        </h2>
-      </div>
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+        Applications
+      </h2>
 
-      {/* EMPTY */}
-      {contacts.length === 0 && (
-        <p className="text-gray-500">No applications found</p>
+      {applicants.length === 0 && (
+        <p className="text-gray-500">No applications yet</p>
       )}
 
-      {/* LIST */}
       <div className="space-y-4">
-        {contacts.map((contact) => (
+        {applicants.map((app) => (
           <div
-            key={contact._id}
+            key={app._id}
             className="border rounded-lg shadow-sm p-4 bg-white dark:bg-gray-800"
           >
-            {/* TOP */}
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  {contact.name}
-                </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-300">
-                  {contact.email}
-                </p>
-                <span className="inline-block mt-1 text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
-                  {contact.userType}
+            <div className="flex justify-between items-start">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {app.name}
+              </h3>
+
+              <div className="flex gap-4 items-center">
+                <span className="text-xs text-gray-400 dark:text-gray-300">
+                  {new Date(app.createdAt).toLocaleDateString()}
                 </span>
+
+                {/* DELETE BUTTON */}
+                <button
+                  onClick={() => deleteApplicant(app._id)}
+                  className="text-red-600 hover:cursor-pointer text-sm"
+                >
+                  Delete
+                </button>
               </div>
-
-              <span className="text-xs text-gray-400 dark:text-gray-300">
-                {new Date(contact.createdAt).toLocaleDateString()}
-              </span>
             </div>
 
-            {/* SUBJECT */}
-            <p className="mt-3 text-sm text-gray-700 dark:text-gray-300">
-              <b>phone:</b> {contact.phone}
+            <p className="text-gray-700 dark:text-gray-300 mt-2">
+              Email: {app.email}
             </p>
 
-            {/* MESSAGE */}
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
-              <b>position:</b> {contact.position}
+            <p className="text-gray-700 dark:text-gray-300">
+              Phone: {app.phone}
             </p>
 
-            {/* ACTIONS */}
-            <div className="flex justify-end mt-4">
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={() => deleteContact(contact._id)}
-              >
-                Delete
-              </Button>
-            </div>
+            <p className="mt-2 font-medium text-indigo-600">
+              Type:{" "}
+              {app.userType === "jop"
+                ? "Job Application"
+                : "Internship Application"}
+            </p>
+
+            {/* JOB APPLICATION */}
+            {app.userType === "jop" && (
+              <p className="text-gray-700 dark:text-gray-300">
+                Position Applied:{" "}
+                <span className="font-medium">
+                  {app.position || "Not Selected"}
+                </span>
+              </p>
+            )}
+
+            {/* INTERNSHIP */}
+            {app.userType === "intern" && (
+              <p className="text-gray-700 dark:text-gray-300">
+                Internship Status:{" "}
+                <span className="font-medium">
+                  {app.internStatus === "graduate"
+                    ? "Graduate"
+                    : app.internStatus === "undergraduate"
+                      ? "Undergraduate"
+                      : "Not Selected"}
+                </span>
+              </p>
+            )}
           </div>
         ))}
       </div>
