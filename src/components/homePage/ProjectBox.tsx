@@ -10,7 +10,7 @@ export function ProjectBox({
   location: string;
 }) {
   return (
-    <div className="flex gap-6 flex-col text-white">
+    <div className="flex gap-6 flex-col text-white rounded-2xl overflow-hidden">
       <img alt="project image" src={img} className="w-full" />
       <div className="flex justify-between gap-4">
         <h1 className="text-[3rem] font-[350] ">{title}</h1>

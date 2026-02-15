@@ -29,7 +29,7 @@ export function ProjectTemplate({
     >
       <img
         src={`https://api.egysmart.org/uploads/${img}`}
-        className="w-[55%] max-[800px]:w-full"
+        className="w-[55%] max-[800px]:w-full rounded-2xl overflow-hidden "
       />
 
       <div className="flex-1 flex flex-col gap-10 text-white">
